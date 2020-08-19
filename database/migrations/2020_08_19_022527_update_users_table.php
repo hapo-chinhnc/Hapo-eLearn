@@ -14,7 +14,6 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->id()->autoIncrement();
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
             $table->tinyInteger('role')->default('1');
@@ -29,7 +28,6 @@ class UpdateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->id();
             $table->dropColumn(['avatar', 'phone', 'role']);
         });
     }
