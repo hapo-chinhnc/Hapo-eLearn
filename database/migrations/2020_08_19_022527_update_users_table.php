@@ -17,7 +17,7 @@ class UpdateUsersTable extends Migration
             $table->id()->autoIncrement();
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
-            $table->tinyInteger('role');
+            $table->tinyInteger('role')->default('1');
         });
     }
 
