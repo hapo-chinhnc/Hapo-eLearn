@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->text('content');
             $table->integer('course_id');
-            $table->integer('lesson_id');
+            $table->integer('lesson_id')->nullable();
             $table->timestamps();
         });
     }
