@@ -1,4 +1,3 @@
-@import "variables";
 @include font-face("UTM", "../storage/fonts/UTMBryantLG.ttf", normal);
 @include font-face("UTM", "../storage/fonts/UTMBryantLG_B.ttf", bold);
 @include font-face("Open Sans", "../storage/fonts/OpenSans-Bold.ttf", bold);
@@ -746,5 +745,3 @@ header {
     }
   }
 }
-
-@import "responsive";

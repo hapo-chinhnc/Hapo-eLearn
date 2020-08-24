@@ -1,371 +1,371 @@
 @media (max-width: 768px) {
-    .navbar-nav {
-      .nav-item {
-        font-size: 14px;
-        margin: 10px 5px;
-        padding-bottom: 10px;
-      }
-    }
-
-    .hapolearn-banner {
-      .hapolearn-banner-text {
-        top: 20%;
-
-        .hapolearn-banner-slogan {
-          @include fontUtm(normal, 30px, 37px);
-        }
-
-        img {
-          width: 45px;
-        }
-
-        .hapolearn-banner-quotes {
-          @include fontUtm(normal, 16px, 20px);
-        }
-
-        .hapolearn-btn {
-          @include fontUtm(bold, 16px, 20px);
-        }
-      }
-    }
-
-    .hapolearn-card-title {
-      margin-top: 12px;
-      @include fontUtm(normal, 20px, 25px);
-    }
-
-    .hapolearn-card-text {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      -webkit-line-clamp: 4;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      @include fontUtm(normal, 14px, 18px);
-    }
-
-    .hapolearn-courses,
-    .hapolearn-othercourses {
-      padding: 0 15px;
-    }
-
-    .hapolearn-courses-items {
-      .hapolearn-courses-items-logo-blue {
-        padding: 20px 30px;
-      }
-    }
-
-    .hapolearn-othercourses {
-      .hapolearn-courses-items {
-        .hapolearn-courses-items-logo-css {
-          padding: 10px 50px;
-        }
-      }
-    }
-
-    .hapolearn-card-body {
-      a {
-        margin-top: 12px;
-        margin-bottom: 25px;
-      }
-    }
-
-    .hapolearn-title {
-      margin-top: 90px;
-      @include fontUtm(bold, 50px, 61px);
-    }
-
-    .hapolearn-courses-btn {
-      -webkit-text-stroke: 0.2px;
-      @include fontUtm(bold, 10px, 12px);
-    }
-
-    .hapolearn-allcourses {
-      @include fontUtm(bold, 28px, 34px);
-      &:hover {
-        font-size: 30px;
-      }
-    }
-
-    .hapolearn-why {
-      .hapolearn-why-imgtop {
-        margin-top: -155px;
-      }
-
-      .hapolearn-why-title {
-        margin-top: -110px;
-        padding: 20px 0 50px 0;
-        @include fontUtm(bold, 50px, 61px);
-      }
-
-      .hapolearn-why-text {
-        padding: 0;
-        @include fontUtm(normal, 16px, 20px);
-
-        img {
-          width: 15px;
-        }
-
-        li {
-          margin-top: 15px;
-        }
-      }
-
-      .hapolearn-why-content {
-        .hapolearn-why-content-img {
-          position: static;
-          transform: scale(1.1);
-          padding-bottom: 30px;
-        }
-      }
-    }
-
-    .hapolearn-feedback-text {
-      @include fontUtm(normal, 18px, 22px);
-    }
-
-    .hapolearn-banner-member {
-      margin-top: 60px;
-
-      .hapolearn-banner-member-title {
-        @include fontUtm(bold, 35px, 43px);
-      }
-
-      .hapolearn-banner-member-button {
-        margin-top: 20px;
-        @include fontUtm(bold, 20px, 25px);
-      }
-    }
-
-    .hapolearn-statistic {
-      .hapolearn-statistic-title {
-        @include fontUtm(bold, 40px, 49px);
-      }
-
-      .hapolearn-statistic-number {
-        @include fontUtm(bold, 40px, 49px);
-      }
-    }
-
-    .hapolearn-footer {
-      .hapolearn-footer-quote {
-        @include fontUtm(normal, 15px, 20px);
-      }
-
-        .hapolearn-footer-ul {
-          .hapolearn-footer-ul-link {
-            @include fontUtm(bold, 18px, 22px);
-          }
-      }
-
-      .hapolearn-footer-icon {
-          height: 40px;
-          width: 40px;
-          margin-right: 15px;
-      }
-    }
-
-    .hapolearn-slick-btn {
-      .right {
-        margin-right: 40px;
-      }
-
-      .left {
-        margin-left: 40px;
-      }
-    }
-
-    .hapolearn-courses-items {
-      margin: 0 7.5px;
+  .navbar-nav {
+    .nav-item {
+      font-size: 14px;
+      margin: 10px 5px;
+      padding-bottom: 10px;
     }
   }
 
-  @media (max-width: 576px) {
-    .navbar-nav {
-      .nav-item:hover {
-        a {
-          background-color: transparent;
-          color: #B2D235 !important;
-        }
-      }
-    }
+  .hapolearn-banner {
+    .hapolearn-banner-text {
+      top: 20%;
 
-    .navbar {
-      padding: 10px;
-    }
-
-    .navbar-nav {
-      .nav-item {
-        padding-bottom: 0;
-
-        a {
-          margin: 5px 0;
-        }
-      }
-    }
-
-    .hapolearn-banner {
-      .hapolearn-banner-text {
-        position: static;
-        padding-bottom: 100px;
-
-        .hapolearn-banner-slogan {
-          @include fontUtm(normal, 25px, 31px);
-        }
-
-        .hapolearn-banner-quotes {
-          @include fontUtm(normal, 16px, 20px);
-        }
-
-        a {
-          display: flex;
-          justify-content: center;
-          padding-bottom: 30%;
-        }
-
-        .hapolearn-btn {
-          width: 70%;
-          @include fontUtm(bold, 20px, 24px);
-        }
-      }
-    }
-
-    .hapolearn-courses,
-    .hapolearn-othercourses {
-      margin-top: -35%;
-      padding: 0 30px;
-
-      .hapolearn-courses-items {
-        margin: 30px 0;
-
-        .hapolearn-courses-btn {
-          width: 70%;
-          height: 42px;
-          margin-bottom: 0;
-          @include fontUtm(bold, 18px, 22px);
-        }
-
-        a {
-          margin-bottom: 0;
-        }
-
-        .hapolearn-card-text {
-          overflow: visible;
-          text-overflow: unset;
-          -webkit-line-clamp: 6;
-          padding: 0 30px;
-          @include fontUtm(normal, 14px, 20px);
-        }
-      }
-
-      .hapolearn-courses-items {
-        .hapolearn-courses-items-logo-blue {
-          padding: 50px;
-        }
-      }
-    }
-
-    .hapolearn-othercourses {
-      .hapolearn-courses-items {
-        .hapolearn-courses-items-logo-css,
-        .hapolearn-courses-items-logo-red {
-          height: 215px;
-        }
-
-        .hapolearn-courses-items-logo-java {
-          padding: 30px;
-          height: 215px;
-        }
-      }
-    }
-
-    .hapolearn-title {
-      @include fontUtm(bold, 40px, 49px);
-    }
-
-    .hapolearn-allcourses {
-      @include fontUtm(bold, 22px, 27px);
-      &:hover {
-        font-size: 24px;
+      .hapolearn-banner-slogan {
+        @include fontUtm(normal, 30px, 37px);
       }
 
       img {
-        width: 35px;
+        width: 45px;
+      }
+
+      .hapolearn-banner-quotes {
+        @include fontUtm(normal, 16px, 20px);
+      }
+
+      .hapolearn-btn {
+        @include fontUtm(bold, 16px, 20px);
+      }
+    }
+  }
+
+  .hapolearn-card-title {
+    margin-top: 12px;
+    @include fontUtm(normal, 20px, 25px);
+  }
+
+  .hapolearn-card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    @include fontUtm(normal, 14px, 18px);
+  }
+
+  .hapolearn-courses,
+  .hapolearn-othercourses {
+    padding: 0 15px;
+  }
+
+  .hapolearn-courses-items {
+    .hapolearn-courses-items-logo-blue {
+      padding: 20px 30px;
+    }
+  }
+
+  .hapolearn-othercourses {
+    .hapolearn-courses-items {
+      .hapolearn-courses-items-logo-css {
+        padding: 10px 50px;
+      }
+    }
+  }
+
+  .hapolearn-card-body {
+    a {
+      margin-top: 12px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .hapolearn-title {
+    margin-top: 90px;
+    @include fontUtm(bold, 50px, 61px);
+  }
+
+  .hapolearn-courses-btn {
+    -webkit-text-stroke: 0.2px;
+    @include fontUtm(bold, 10px, 12px);
+  }
+
+  .hapolearn-allcourses {
+    @include fontUtm(bold, 28px, 34px);
+    &:hover {
+      font-size: 30px;
+    }
+  }
+
+  .hapolearn-why {
+    .hapolearn-why-imgtop {
+      margin-top: -155px;
+    }
+
+    .hapolearn-why-title {
+      margin-top: -110px;
+      padding: 20px 0 50px 0;
+      @include fontUtm(bold, 50px, 61px);
+    }
+
+    .hapolearn-why-text {
+      padding: 0;
+      @include fontUtm(normal, 16px, 20px);
+
+      img {
+        width: 15px;
+      }
+
+      li {
+        margin-top: 15px;
       }
     }
 
-    .hapolearn-why {
-      .hapolearn-why-title {
-        padding: 30px 0 40px 0;
-        @include fontUtm(bold, 40px, 40px);
-      }
-
-      .hapolearn-why-text {
-        text-align: center;
-        @include fontUtm(normal, 14px, 17px);
-      }
-
-      .hapolearn-why-content {
-        .hapolearn-why-content-img {
-          position: static;
-          padding-bottom: 0;
-          transform: scale(0.9);
-        }
+    .hapolearn-why-content {
+      .hapolearn-why-content-img {
+        position: static;
+        transform: scale(1.1);
+        padding-bottom: 30px;
       }
     }
+  }
 
-    .hapolearn-feedback-text {
-      @include fontUtm(normal, 14px, 20px);
+  .hapolearn-feedback-text {
+    @include fontUtm(normal, 18px, 22px);
+  }
+
+  .hapolearn-banner-member {
+    margin-top: 60px;
+
+    .hapolearn-banner-member-title {
+      @include fontUtm(bold, 35px, 43px);
     }
 
-    .hapolearn-banner-member {
-      padding: 25px 0;
-      margin-top: 40px;
+    .hapolearn-banner-member-button {
+      margin-top: 20px;
+      @include fontUtm(bold, 20px, 25px);
+    }
+  }
 
-      .hapolearn-banner-member-title {
-        -webkit-text-stroke: 1px;
-        @include fontUtm(bold, 23px, 28px);
-      }
+  .hapolearn-statistic {
+    .hapolearn-statistic-title {
+      @include fontUtm(bold, 40px, 49px);
+    }
 
-      .hapolearn-banner-member-button {
+    .hapolearn-statistic-number {
+      @include fontUtm(bold, 40px, 49px);
+    }
+  }
+
+  .hapolearn-footer {
+    .hapolearn-footer-quote {
+      @include fontUtm(normal, 15px, 20px);
+    }
+
+    .hapolearn-footer-ul {
+      .hapolearn-footer-ul-link {
         @include fontUtm(bold, 18px, 22px);
       }
     }
 
-    .hapolearn-statistic {
-      margin-top: 50px;
+    .hapolearn-footer-icon {
+      height: 40px;
+      width: 40px;
+      margin-right: 15px;
+    }
+  }
 
-      .hapolearn-statistic-title {
-        margin-top: 35px;
+  .hapolearn-slick-btn {
+    .right {
+      margin-right: 40px;
+    }
+
+    .left {
+      margin-left: 40px;
+    }
+  }
+
+  .hapolearn-courses-items {
+    margin: 0 7.5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-nav {
+    .nav-item:hover {
+      a {
+        background-color: transparent;
+        color: #b2d235 !important;
+      }
+    }
+  }
+
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar-nav {
+    .nav-item {
+      padding-bottom: 0;
+
+      a {
+        margin: 5px 0;
+      }
+    }
+  }
+
+  .hapolearn-banner {
+    .hapolearn-banner-text {
+      position: static;
+      padding-bottom: 100px;
+
+      .hapolearn-banner-slogan {
+        @include fontUtm(normal, 25px, 31px);
+      }
+
+      .hapolearn-banner-quotes {
+        @include fontUtm(normal, 16px, 20px);
+      }
+
+      a {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30%;
+      }
+
+      .hapolearn-btn {
+        width: 70%;
+        @include fontUtm(bold, 20px, 24px);
+      }
+    }
+  }
+
+  .hapolearn-courses,
+  .hapolearn-othercourses {
+    margin-top: -35%;
+    padding: 0 30px;
+
+    .hapolearn-courses-items {
+      margin: 30px 0;
+
+      .hapolearn-courses-btn {
+        width: 70%;
+        height: 42px;
+        margin-bottom: 0;
+        @include fontUtm(bold, 18px, 22px);
+      }
+
+      a {
+        margin-bottom: 0;
+      }
+
+      .hapolearn-card-text {
+        overflow: visible;
+        text-overflow: unset;
+        -webkit-line-clamp: 6;
+        padding: 0 30px;
+        @include fontUtm(normal, 14px, 20px);
       }
     }
 
-    .hapolearn-footer {
-      .hapolearn-footer-quote {
-        @include fontUtm(normal, 13px, 17px);
-      }
-
-        .hapolearn-footer-ul {
-          .hapolearn-footer-ul-link {
-            @include fontUtm(bold, 18px, 22px);
-          }
-      }
-
-      .hapolearn-footer-icon {
-          height: 30px;
-          width: 30px;
-          margin-right: 10px;
+    .hapolearn-courses-items {
+      .hapolearn-courses-items-logo-blue {
+        padding: 50px;
       }
     }
+  }
 
-    .hapolearn-feedback-items {
+  .hapolearn-othercourses {
+    .hapolearn-courses-items {
+      .hapolearn-courses-items-logo-css,
+      .hapolearn-courses-items-logo-red {
+        height: 215px;
+      }
+
+      .hapolearn-courses-items-logo-java {
+        padding: 30px;
+        height: 215px;
+      }
+    }
+  }
+
+  .hapolearn-title {
+    @include fontUtm(bold, 40px, 49px);
+  }
+
+  .hapolearn-allcourses {
+    @include fontUtm(bold, 22px, 27px);
+    &:hover {
+      font-size: 24px;
+    }
+
+    img {
+      width: 35px;
+    }
+  }
+
+  .hapolearn-why {
+    .hapolearn-why-title {
+      padding: 30px 0 40px 0;
+      @include fontUtm(bold, 40px, 40px);
+    }
+
+    .hapolearn-why-text {
+      text-align: center;
       @include fontUtm(normal, 14px, 17px);
     }
 
-    .hapolearn-slick {
-      padding: 0;
-    }
-
-    .slide-btn-right {
-      right: 0;
+    .hapolearn-why-content {
+      .hapolearn-why-content-img {
+        position: static;
+        padding-bottom: 0;
+        transform: scale(0.9);
+      }
     }
   }
+
+  .hapolearn-feedback-text {
+    @include fontUtm(normal, 14px, 20px);
+  }
+
+  .hapolearn-banner-member {
+    padding: 25px 0;
+    margin-top: 40px;
+
+    .hapolearn-banner-member-title {
+      -webkit-text-stroke: 1px;
+      @include fontUtm(bold, 23px, 28px);
+    }
+
+    .hapolearn-banner-member-button {
+      @include fontUtm(bold, 18px, 22px);
+    }
+  }
+
+  .hapolearn-statistic {
+    margin-top: 50px;
+
+    .hapolearn-statistic-title {
+      margin-top: 35px;
+    }
+  }
+
+  .hapolearn-footer {
+    .hapolearn-footer-quote {
+      @include fontUtm(normal, 13px, 17px);
+    }
+
+    .hapolearn-footer-ul {
+      .hapolearn-footer-ul-link {
+        @include fontUtm(bold, 18px, 22px);
+      }
+    }
+
+    .hapolearn-footer-icon {
+      height: 30px;
+      width: 30px;
+      margin-right: 10px;
+    }
+  }
+
+  .hapolearn-feedback-items {
+    @include fontUtm(normal, 14px, 17px);
+  }
+
+  .hapolearn-slick {
+    padding: 0;
+  }
+
+  .slide-btn-right {
+    right: 0;
+  }
+}
