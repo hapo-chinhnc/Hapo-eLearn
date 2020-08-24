@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -19,12 +19,12 @@ $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
 @mixin font-face($font-family, $url, $font-weight) {
-	@font-face {
-	  font-family: '#{$font-family}';
-		src: url('#{$url}');
+  @font-face {
+    font-family: "#{$font-family}";
+    src: url("#{$url}");
     font-style: normal;
     font-weight: $font-weight;
-	}
+  }
 }
 
 @mixin fontUtm($font-weight, $font-size, $line-height) {
@@ -33,12 +33,12 @@ $cyan: #6cb2eb;
 }
 
 @mixin font-Ops($font-weight, $font-size, $line-height) {
-  font: $font-weight $font-size 'Open Sans';
+  font: $font-weight $font-size "Open Sans";
   line-height: $line-height;
 }
 
-$color-green: #B2D235;
+$color-green: #b2d235;
 $color-green-brighter: #bce41b;
 $color-gray-darker: #505353;
-$color-blue-black: #11114E;
-$fa-font-path: '../webfonts';
+$color-blue-black: #11114e;
+$fa-font-path: "../webfonts";
