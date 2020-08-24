@@ -10,7 +10,13 @@ class CoursesController extends Controller
 {
     public function index()
     {
-        $courses = DB::table('courses')->paginate(config('variable.paginate'));
+        $courses = Course::paginate(config('variable.paginate'));
         return view('pages.all_courses', compact('courses'));
+    }
+
+    public function show($id)
+    {
+        $course = Course::findOrFail($id);
+        return view('pages.detail_course', compact('course'));
     }
 }

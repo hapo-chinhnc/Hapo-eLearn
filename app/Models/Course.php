@@ -9,6 +9,4 @@ class Course extends Model
     protected $fillable = [
         'title', 'description', 'requirement', 'price', 'teacher_id'
     ];
-
-    protected $table = 'courses';
 }

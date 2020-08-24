@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="col-3 offset-8">
-                       <a href="/courses/{{ $course->id }}"><button class="btn course-item-btn px-4 mt-4">More</button></a>
+                       <a href="{{ route('courses.show', $course->id) }}"><button class="btn course-item-btn px-4 mt-4">More</button></a>
                     </div>
                     <div class="course-item-statistic col-12 d-flex justify-content-between">
                         <div>

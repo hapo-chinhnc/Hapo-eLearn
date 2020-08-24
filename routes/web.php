@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/courses', 'CoursesController@index')->name('courses.index');
+Route::resource('courses', 'CoursesController');
