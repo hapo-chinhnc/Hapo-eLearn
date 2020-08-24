@@ -34,7 +34,17 @@ $(document).ready(function() {
         $('.modal').modal('hide');
     })
 
-    var origin   = window.location.href;
+    if($('#form-login-input span').hasClass('invalid-feedback')) {
+        $('.modal').modal('show');
+    }
+
+    if($('#form-register-input span').hasClass('invalid-feedback')) {
+        $('#login').removeClass('selected').addClass('not-select');
+        $('#form-login').removeClass('d-block').addClass('d-none');
+        $('#register').removeClass('not-select').addClass('selected');
+        $('#form-register').removeClass('d-none').addClass('d-block');
+        $('.modal').modal('show');
+    }
 
     $('.hapolearn-slick').slick({
         infinite: true,

@@ -26,17 +26,30 @@
                                 <a class="nav-link" href="{{ route('courses.index') }}">ALL COURSES</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">LIST LESSON</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="#">LESSON DETAIL</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="modal" data-target="#login-register">LOGIN/REGISTER</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="#">PROFILE</a>
                             </li>
+                            @if (Auth::check())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">LIST LESSON</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#">LESSON DETAIL</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target="#login-register">LOGIN/REGISTER</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </nav>
