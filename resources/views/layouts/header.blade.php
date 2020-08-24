@@ -7,7 +7,6 @@
         <meta name="Hapo Learn" content="Hapo Learn"/>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="shortcut icon" type="img/png" href="{{ url('storage/images/favicon.png') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <title>Hapo Learn</title>
     </head>
     <body>
