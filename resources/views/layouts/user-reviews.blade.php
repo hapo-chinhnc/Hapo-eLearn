@@ -10,7 +10,7 @@
             </div>
             <div class="hapolearn-feedback-items-user mt-4 row ml-1">
                 <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ url('storage/images/catt.png') }}">
+                    <img src="{{ asset('storage/images/catt.png') }}">
                 </div>
                 <div class="hapolearn-feedback-items-user-infor ml-3">
                     <p class="hapolearn-feedback-items-user-infor-text">Nguyen Cong Chinh</p>
@@ -29,7 +29,7 @@
             </div>
             <div class="hapolearn-feedback-items-user mt-4 row ml-1">
                 <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ url('storage/images/catt.png') }}">
+                    <img src="{{ asset('storage/images/catt.png') }}">
                 </div>
                 <div class="hapolearn-feedback-items-user-infor ml-3">
                     <p class="hapolearn-feedback-items-user-infor-text">Some One Else</p>
@@ -48,7 +48,7 @@
             </div>
             <div class="hapolearn-feedback-items-user mt-4 row ml-1">
                 <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ url('storage/images/catt.png') }}">
+                    <img src="{{ asset('storage/images/catt.png') }}">
                 </div>
                 <div class="hapolearn-feedback-items-user-infor ml-3">
                     <p class="hapolearn-feedback-items-user-infor-text">Some One Else 1</p>
@@ -67,7 +67,7 @@
             </div>
             <div class="hapolearn-feedback-items-user mt-4 row ml-1">
                 <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ url('storage/images/catt.png') }}">
+                    <img src="{{ asset('storage/images/catt.png') }}">
                 </div>
                 <div class="hapolearn-feedback-items-user-infor ml-3">
                     <p class="hapolearn-feedback-items-user-infor-text">Some One Else 2</p>
@@ -82,5 +82,5 @@
         </div>
     </div>
 </section>
-<input type="text" hidden value="<img src='{{ url('storage/images/btn-left.png') }}' class='slide-btn-left'>" id="slide-btn-left">
-<input type="text" hidden value="<img src='{{ url('storage/images/btn-right.png') }}' class='slide-btn-right'>" id="slide-btn-right">
+<input type="text" hidden value="<img src='{{ asset('storage/images/btn-left.png') }}' class='slide-btn-left'>" id="slide-btn-left">
+<input type="text" hidden value="<img src='{{ asset('storage/images/btn-right.png') }}' class='slide-btn-right'>" id="slide-btn-right">

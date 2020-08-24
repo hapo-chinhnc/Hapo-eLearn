@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="Hapo Learn" content="Hapo Learn"/>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="shortcut icon" type="img/png" href="{{ url('storage/images/favicon.png') }}">
+        <link rel="shortcut icon" type="img/png" href="{{ asset('storage/images/favicon.png') }}">
         <title>Hapo Learn</title>
     </head>
     <body>
@@ -16,7 +16,7 @@
                     <button class="navbar-toggler hapolearn-header-button col-1" id="icon-navbar" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="fa fa-bars" id="span-btn"></span>
                     </button>
-                    <img src="{{ url('storage/images/logo.png') }}" class="col-7 col-md-6 col-xl-3 ml-xl-1 m-auto">
+                    <img src="{{ asset('storage/images/logo.png') }}" class="col-7 col-md-6 col-xl-3 ml-xl-1 m-auto">
                     <div class="collapse navbar-collapse col-md-12 col-xl-8 justify-content-xl-end no-gutters-custom justify-content-md-center" id="collapsibleNavbar">
                         <ul class="navbar-nav hapolearn-lists">
                             <li class="nav-item">
