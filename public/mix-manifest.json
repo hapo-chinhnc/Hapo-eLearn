@@ -1,9 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/style.css": "/css/style.css",
-    "/css/app.css": "/css/app.css",
-    "/js/style.js": "/js/style.js",
-    "/js/slick.min.js": "/js/slick.min.js",
-    "/css/slick.css": "/css/slick.css",
-    "/css/slick-theme.css": "/css/slick-theme.css"
+    "/css/app.css": "/css/app.css"
 }
