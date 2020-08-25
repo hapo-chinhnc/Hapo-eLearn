@@ -22,8 +22,6 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    // override username()
-
     public function username()
     {
         return 'email_log';
