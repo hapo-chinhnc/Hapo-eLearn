@@ -24,21 +24,21 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'email_log';
+        return 'log_email';
     }
 
     protected function validateLogin(Request $request)
     {
         $request->validate([
             $this->username() => 'required|string',
-            'password_log' => 'required|string',
+            'log_password' => 'required|string',
         ]);
     }
 
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            ['email' => $request->email_log, 'password' => $request->password_log],
+            ['email' => $request->log_email, 'password' => $request->log_password],
             $request->filled('remember')
         );
     }

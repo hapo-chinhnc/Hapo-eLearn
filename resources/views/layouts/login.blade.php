@@ -1,4 +1,4 @@
-<div class="modal fade p-0" id="login-register">
+<div class="modal fade p-0" id="loginRegister">
     <div class="modal-dialog">
       <div class="modal-content mt-3 m-auto">
         <div class="form-login-register d-flex flex-column ">
@@ -7,19 +7,19 @@
                 <button class="btn col-6 text-center not-select text-decoration-none" id="register">Register</button>
                 <div class="btn-x d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></div>
             </div>
-            <div class="mx-auto form-login flex-column d-block" id="form-login">
-                <form action="{{ route('login') }}" class="d-flex flex-column" method="POST" id="form-login-input">
+            <div class="mx-auto form-login flex-column d-block" id="formLogin">
+                <form action="{{ route('login') }}" class="d-flex flex-column" method="POST" id="formLoginInput">
                     @csrf
                     <label for="email" class="lable-input">Email</label>
-                    <input id="email" type="email" class="form-control @error('email_log') is-invalid @enderror" name="email_log" value="{{ old('email_log') }}" required autocomplete="email" autofocus>
-                        @error('email_log')
+                    <input id="email" type="email" class="form-control @error('log_email') is-invalid @enderror" name="log_email" value="{{ old('log_email') }}" required autocomplete="email" autofocus>
+                        @error('log_email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     <label for="password"  class="lable-input">Password</label>
-                    <input id="password" type="password" class="form-control @error('password_log') is-invalid @enderror" name="password_log" required autocomplete="current-password">
-                        @error('password_log')
+                    <input id="password" type="password" class="form-control @error('log_password') is-invalid @enderror" name="log_password" required autocomplete="current-password">
+                        @error('log_password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -37,8 +37,8 @@
                 <button class="mb-3 w-100 login-google-btn btn p-2"><i class="fab fa-google-plus-g mr-2"></i>Google</button>
                 <button class="mb-3 w-100 login-fb-btn btn p-2"><i class="fab fa-facebook-f mr-2"></i>Facebook</button>
             </div>
-            <div class="form-register mx-auto d-none" id="form-register">
-                <form action="{{ route('register') }}" class="d-flex flex-column" method="POST" id="form-register-input">
+            <div class="form-register mx-auto d-none" id="formRegister">
+                <form action="{{ route('register') }}" class="d-flex flex-column" method="POST" id="formRegisterInput">
                     @csrf
                     <label for="name" class="lable-input">User Name</label>
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>

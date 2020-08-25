@@ -19,30 +19,30 @@ $(document).ready(function() {
     $('#login').click(function() {
         $('#login').removeClass('not-select').addClass('selected');
         $('#register').removeClass('selected').addClass('not-select');
-        $('#form-login').removeClass('d-none').addClass('d-block');
-        $('#form-register').removeClass('d-block').addClass('d-none');
+        $('#formLogin').removeClass('d-none').addClass('d-block');
+        $('#formRegister').removeClass('d-block').addClass('d-none');
     })
 
     $('#register').click(function() {
         $('#register').removeClass('not-select').addClass('selected');
         $('#login').removeClass('selected').addClass('not-select');
-        $('#form-login').removeClass('d-block').addClass('d-none');
-        $('#form-register').removeClass('d-none').addClass('d-block');
+        $('#formLogin').removeClass('d-block').addClass('d-none');
+        $('#formRegister').removeClass('d-none').addClass('d-block');
     })
 
     $('.btn-x').click(function() {
         $('.modal').modal('hide');
     })
 
-    if($('#form-login-input span').hasClass('invalid-feedback')) {
+    if($('#formLoginInput span').hasClass('invalid-feedback')) {
         $('.modal').modal('show');
     }
 
-    if($('#form-register-input span').hasClass('invalid-feedback')) {
+    if($('#formRegisterInput span').hasClass('invalid-feedback')) {
         $('#login').removeClass('selected').addClass('not-select');
-        $('#form-login').removeClass('d-block').addClass('d-none');
+        $('#formLogin').removeClass('d-block').addClass('d-none');
         $('#register').removeClass('not-select').addClass('selected');
-        $('#form-register').removeClass('d-none').addClass('d-block');
+        $('#formRegister').removeClass('d-none').addClass('d-block');
         $('.modal').modal('show');
     }
 

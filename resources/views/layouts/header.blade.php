@@ -47,7 +47,7 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" data-toggle="modal" data-target="#login-register">LOGIN/REGISTER</a>
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginRegister">LOGIN/REGISTER</a>
                                 </li>
                             @endif
                         </ul>
