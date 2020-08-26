@@ -50,13 +50,13 @@
             </div>
             <div class="col-4 course-info h-50 ml-5 w-100 px-0">
                 <div class="course-info-text">
-                    <i class="fas fa-users"></i> Learners: {{ $courseStatistic['user'] }}
+                    <i class="fas fa-users"></i> Learners: {{ $course->user_course_count }}
                 </div>
                 <div class="course-info-text">
-                    <i class="far fa-list-alt"></i> Lessons: {{ $courseStatistic['lesson'] }} lessons
+                    <i class="far fa-list-alt"></i> Lessons: {{ $course->lessons_count }} lessons
                 </div>
                 <div class="course-info-text">
-                    <i class="far fa-clock"></i> Times: {{ $courseStatistic['time'] }} minutes
+                    <i class="far fa-clock"></i> Times: {{ $courseTimes }} minutes
                 </div>
                 <div class="course-info-text">
                     <i class="fas fa-hashtag"></i> Tags: #tag1 #tag2

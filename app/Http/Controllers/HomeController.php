@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mainCourses = Course::all()->random(6);
+        $mainCourses = Course::inRandomOrder()->limit(6)->get();
         return view('index', compact('mainCourses'));
     }
 }

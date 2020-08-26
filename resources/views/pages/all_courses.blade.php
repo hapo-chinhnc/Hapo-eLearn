@@ -28,12 +28,12 @@
                     </div>
                     <div class="course-item-statistic col-12 d-flex justify-content-between">
                         <div>
-                            <div class="course-item-statistic-title">Learners</div>
-                            <div class="course-item-statistic-number">{{ $course['userCourse'] }}</div>
+                            <div class="course-item-statistic-title">Learners: </div>
+                            <div class="course-item-statistic-number">{{ $course->user_course_count }}</div>
                         </div>
                         <div>
                             <div class="course-item-statistic-title">Lessons</div>
-                            <div class="course-item-statistic-number">{{ $course['lessons'] }}</div>
+                            <div class="course-item-statistic-number">{{ $course->lessons_count }}</div>
                         </div>
                         <div>
                             <div class="course-item-statistic-title">Quizzes</div>
