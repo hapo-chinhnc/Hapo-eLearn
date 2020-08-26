@@ -1,8 +1,5 @@
 <div class="hapolearn-title text-center w-100"><span class="hapolearn-title-borderbottom">Other Courses</span></div>
     <section class="hapolearn-othercourses mt-3 mt-md-5 d-md-flex flex-column flex-md-row justify-content-center">
-        @php
-            $count = count($mainCourses);
-        @endphp
         @foreach ($mainCourses->slice(3) as $course)
             <div class="card hapolearn-courses-items col-md-4 no-gutters-custom col-12">
                 <img class="card-img-top hapolearn-courses-items-logo-css" src="{{ asset('storage/images/CSS.png') }}">

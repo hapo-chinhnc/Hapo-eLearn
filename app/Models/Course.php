@@ -21,4 +21,19 @@ class Course extends Model
     {
         return $this->hasMany(UserCourse::class);
     }
+
+    public function getCourseLessonAttribute()
+    {
+        return $this->lessons()->count();
+    }
+
+    public function getCourseUserAttribute()
+    {
+        return $this->userCourse()->count();
+    }
+
+    public function getCourseTimeAttribute()
+    {
+        return $this->lessons()->sum('time');
+    }
 }
