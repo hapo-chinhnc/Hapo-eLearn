@@ -28,13 +28,11 @@
                         </div>
                         <div class="course-detail-lesson-detail">
                             @if (count($lessons) > 0)
-                                <?php $i=1 ?>
-                                @foreach ($lessons as $lesson)
+                                @foreach ($lessons as $key => $lesson)
                                     <div class="d-flex justify-content-between align-items-center p-3 border-top-bot">
-                                        <p class="my-auto"><strong>{{ $i }}:</strong> {{ $lesson->title }}</p>
+                                        <p class="my-auto">{{ ++$key . ": " . $lesson->title }}</p>
                                         <button class="btn btn-learn">Learn</button>
                                     </div>
-                                    <?php $i++ ?>
                                 @endforeach
                                 <div class="mt-4 ">
                                     <div class="pagination">
@@ -67,13 +65,11 @@
                 <div class="mt-3">
                     <div class="course-info-tittle d-flex justify-content-center align-items-center">Other Courses</div>
                     <div class="other-list">
-                        <?php $i = 1 ?>
-                        @foreach ($otherCourses as $other)
+                        @foreach ($otherCourses as $key => $other)
                             <div class="other-list-item py-3 row mx-0 ">
-                                <div class="col-1 no-gutters-custom ml-3"><strong>{{ $i }}</strong></div>
+                                <div class="col-1 no-gutters-custom ml-3"><strong>{{ ++$key }}</strong></div>
                                 <a href="{{ route('courses.show', $other->id) }}" class="col-10 no-gutters-custom">{{ $other->title }}</a>
                             </div>
-                            <?php $i++ ?>
                         @endforeach
                         <div class="text-center p-4">
                             <button class="btn btn-learn p-2 px-4" onclick="location.href='{{ route('courses.index') }}'">View all ours courses</button>
