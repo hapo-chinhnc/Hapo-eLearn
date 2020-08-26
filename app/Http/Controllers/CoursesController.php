@@ -19,7 +19,7 @@ class CoursesController extends Controller
     {
         $selectCourse = Course::findOrFail($id);
         $course = Course::withCount(['lessons', 'userCourse'])->findOrFail($id);
-        $otherCourses = Course::inRandomOrder()->limit(5)->get();
+        $otherCourses = Course::inRandomOrder()->limit(config('variable.otherCourse'))->get();
         $courseTimes = $selectCourse->lessons()->sum('time');
         $lessons = $selectCourse->lessons()->paginate(config('variable.paginateLesson'));
         return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'courseTimes']));
