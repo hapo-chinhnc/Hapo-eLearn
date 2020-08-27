@@ -11,7 +11,7 @@ class LessonsController extends Controller
     public function show($id)
     {
         $lesson = Lesson::findOrFail($id);
-        $otherCourses = Course::inRandomOrder()->limit(config('variable.otherCourse'))->get();
+        $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
         return view('pages.lesson_detail', compact(['lesson', 'otherCourses']));
     }
 }

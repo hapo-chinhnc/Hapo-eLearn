@@ -1,7 +1,7 @@
 <?php
     return [
         'paginate' => '10',
-        'paginateLesson' => '20',
-        'homePageCourse' => '6',
-        'otherCourse' => '5',
+        'paginate_lesson' => '20',
+        'home_page_course' => '6',
+        'other_course' => '5',
     ];
