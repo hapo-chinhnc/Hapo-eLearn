@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mainCourses = Course::inRandomOrder()->limit(config('variable.homePageCourse'))->get();
+        $mainCourses = Course::inRandomOrder()->limit(config('variable.home_page_course'))->get();
         return view('index', compact('mainCourses'));
     }
 }

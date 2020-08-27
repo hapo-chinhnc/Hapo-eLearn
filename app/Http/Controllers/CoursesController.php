@@ -18,8 +18,8 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        $otherCourses = Course::inRandomOrder()->limit(config('variable.otherCourse'))->get();
-        $lessons = $course->lessons()->paginate(config('variable.paginateLesson'));
+        $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
+        $lessons = $course->lessons()->paginate(config('variable.paginate_lesson'));
         return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons']));
     }
 }

@@ -31,7 +31,7 @@
                                 @foreach ($lessons as $key => $lesson)
                                     <div class="d-flex justify-content-between align-items-center p-3 border-top-bot">
                                         <p class="my-auto">{{ ++$key . ": " . $lesson->title }}</p>
-                                        <button class="btn btn-learn">Learn</button>
+                                        <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learn">Learn</button></a>
                                     </div>
                                 @endforeach
                                 <div class="mt-4 ">

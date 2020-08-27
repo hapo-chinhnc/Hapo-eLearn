@@ -659,7 +659,7 @@ header {
 }
 
 .course-detail-image {
-  width: 90%;
+  margin-top: 30px;
   border-radius: 10px;
   background-color: #3f6185;
 }
@@ -723,25 +723,38 @@ header {
     border-bottom: 1px solid #e2e0e0;
   }
 
-  .course-info-tittle {
-    color: white;
-    background-color: #b2d235;
-    padding: 20px;
-    @include fontUtm(bold, 25px, 31px);
-  }
-
   .btn-learn {
     font-size: 18px;
   }
+}
 
-  .other-list {
-    background-color: white;
+.course-info-tittle {
+  color: white;
+  background-color: #b2d235;
+  padding: 20px;
+  @include fontUtm(bold, 25px, 31px);
+}
 
-    .other-list-item {
-      color: #505353;
-      border-top: 1px solid #e2e0e0;
-      border-bottom: 1px solid #e2e0e0;
-      @include fontUtm(normal, 16px, 20px);
-    }
+.other-list {
+  background-color: white;
+
+  .other-list-item {
+    color: #505353;
+    border-top: 1px solid #e2e0e0;
+    border-bottom: 1px solid #e2e0e0;
+    @include fontUtm(normal, 16px, 20px);
+  }
+}
+
+.lesson-detail {
+  @include fontUtm(normal, 18px, 26px);
+
+  .lesson-detail-title {
+    margin: 15px 0;
+    @include fontUtm(bold, 25px, 31px);
+  }
+
+  .lesson-detail-text {
+    text-align: justify;
   }
 }
