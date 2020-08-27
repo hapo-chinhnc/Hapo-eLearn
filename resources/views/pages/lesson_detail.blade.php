@@ -30,7 +30,7 @@
             <div class="col-4">
                 <div class="course-info">
                     <div class="course-info-text">
-                        <i class="fas fa-desktop"></i> Course: {{ $lesson->course_title }}
+                        <i class="fas fa-desktop"></i> Course: {{ $lesson->course->title }}
                     </div>
                     <div class="course-info-text">
                         <i class="fas fa-users"></i> Learners: {{ $lesson->lesson_user }}

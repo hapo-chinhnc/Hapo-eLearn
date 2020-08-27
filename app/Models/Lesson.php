@@ -17,11 +17,6 @@ class Lesson extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public function getCourseTitleAttribute()
-    {
-        return $this->course->title;
-    }
-
     public function userLesson()
     {
         return $this->hasMany(UserLesson::class);
