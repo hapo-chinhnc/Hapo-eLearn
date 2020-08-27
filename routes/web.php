@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('courses', 'CoursesController');
 Auth::routes();
+Route::resource('lesson-detail', 'LessonsController');
