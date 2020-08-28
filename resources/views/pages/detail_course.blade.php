@@ -144,7 +144,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div>
                                     <div class="lesson-detail-title">Leave a Comment</div>
                                     <textarea name="comment" id="" cols="30" rows="5" class="form-control mb-3" placeholder="Message"></textarea>
