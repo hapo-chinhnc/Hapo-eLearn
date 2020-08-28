@@ -659,7 +659,6 @@ header {
 }
 
 .course-detail-image {
-  margin-top: 30px;
   border-radius: 10px;
   background-color: #3f6185;
 }
@@ -700,11 +699,13 @@ header {
   color: #505353;
 
   .descriptions-course-title {
+    border-bottom: 1px solid #b2d235;
     letter-spacing: -0.02em;
     @include fontUtm(bold, 25px, 31px);
   }
 
   .descriptions-course-content {
+    text-align: justify;
     color: #949292;
     letter-spacing: -0.02em;
     @include fontUtm(normal, 18px, 26px);
@@ -756,5 +757,145 @@ header {
 
   .lesson-detail-text {
     text-align: justify;
+  }
+}
+
+.teacher-info {
+  display: flex;
+
+  .teacher-info-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .teacher-info-name {
+    @include fontUtm(bold, 18px, 22px);
+  }
+
+  .teacher-info-exp {
+    color: #bdb9b9;
+    @include fontUtm(normal, 14px, 17px);
+  }
+
+  .teacher-info-gplus {
+    margin: 1 10px;
+    border-radius: 50%;
+    padding: 0 3.5px;
+    border: 0.5px solid #f44336;
+    color: #f44336;
+  }
+
+  .teacher-info-fb {
+    margin: 0 10px;
+    border-radius: 50%;
+    padding: 1px 8.5px;
+    border: 0.5px solid #1976d2;
+    color: #1976d2;
+  }
+
+  .teacher-info-slack {
+    margin: 0 10px;
+    border-radius: 50%;
+    color: #ff9800;
+    border: 0.5px solid #e91e63;
+    padding: 0 5px;
+  }
+
+  .teacher-text {
+    text-align: justify;
+    color: #949292;
+    @include fontUtm(normal, 18px, 26px);
+  }
+}
+
+.lesson-program {
+  color: #505353;
+  @include fontUtm(bold, 18px, 22px);
+
+  i {
+    color: #b2d235;
+  }
+
+  .porgram-list {
+    border-top: 1px solid #f3f0f0;
+    border-bottom: 1px solid #f3f0f0;
+  }
+
+  .program-type {
+    color: #bdb9b9;
+    @include fontUtm(normal, 14px, 17px);
+  }
+}
+
+.rating {
+  border-top: 1px solid #f3f0f0;
+  border-bottom: 1px solid #f3f0f0;
+
+  .rating-star {
+    color: white;
+    background-color: #505353;
+    border-radius: 5px;
+
+    .rating-star-number {
+      @include fontUtm(bold, 60px, 70px);
+    }
+
+    .rating-times {
+      @include fontUtm(bold, 16px, 20px);
+    }
+
+    i {
+      font-size: 20px;
+      color: #ffd567;
+    }
+  }
+
+  .total-star {
+    color: #505353;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    @include fontUtm(normal, 16px, 20px);
+
+    .total-star-title {
+      color: #505353;
+      @include fontUtm(bold, 16px, 20px);
+    }
+  }
+}
+
+.progress {
+  width: 320px;
+  height: 7px;
+}
+
+.user-reviews-title {
+  color: #505353;
+  @include fontUtm(bold, 18px, 22px);
+}
+
+.user-review-item {
+  border-bottom: 1px solid #f3f0f0;
+
+  .user-review-item-info {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    i {
+      font-size: 14px;
+      color: #ffd567;
+    }
+
+    .review-time {
+      color: #bdb9b9;
+      @include fontUtm(normal, 14px, 17px);
+    }
+  }
+
+  .user-review-text {
+    text-align: justify;
+    color: #949292;
+    @include fontUtm(normal, 18px, 26px);
   }
 }
