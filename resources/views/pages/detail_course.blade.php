@@ -170,7 +170,7 @@
                         <i class="far fa-clock"></i> Times: {{ $course->course_time }} minutes
                     </div>
                     <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: #tag1 #tag2
+                        <i class="fas fa-hashtag"></i> Tags: {{ $course->course_tag }}
                     </div>
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: {{ $course->price }}

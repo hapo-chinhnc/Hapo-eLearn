@@ -30,7 +30,7 @@
                                         {{ $lesson->requirement }}
                                     </div>
                                     <div class="lesson-detail-text d-flex align-items-center">
-                                        <div class="lesson-detail-title pr-4">Tag:</div> #tag1 #tag3 tag12
+                                        <div class="lesson-detail-title pr-4">Tag:</div> {{ $lesson->course->course_tag }}
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
                         <i class="far fa-clock"></i> Times:  {{ $lesson->time }} minutes
                     </div>
                     <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: #tag1 #tag2
+                        <i class="fas fa-hashtag"></i> Tags: {{ $lesson->course->course_tag }}
                     </div>
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: 11
