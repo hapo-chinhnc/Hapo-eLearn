@@ -13,7 +13,7 @@ body {
     text-align: center;
 
     a {
-      color: #505353;
+      color: $lesson-tittle-color;
       padding: 8px 10px;
       text-transform: uppercase;
       @include font-Ops(bolder, 1em, 1.25em);
@@ -238,7 +238,7 @@ header {
 }
 
 .hapolearn-feedback-text {
-  color: #505353;
+  color: $lesson-tittle-color;
   margin-top: 20px;
   padding-bottom: 20px;
   @include fontUtm(normal, 25px, 31px);
@@ -292,7 +292,7 @@ header {
     }
 
     .hapolearn-feedback-items-user-infor-courses {
-      color: #505353;
+      color: $lesson-tittle-color;
       margin: 0;
       -webkit-text-stroke: 0.5px;
       @include fontUtm(normal, 16px, 20px);
@@ -344,7 +344,7 @@ header {
   margin-top: 110px;
 
   .hapolearn-statistic-title {
-    color: #505353;
+    color: $lesson-tittle-color;
     margin-top: 60px;
     @include fontUtm(bold, 60px, 74px);
   }
@@ -356,7 +356,7 @@ header {
 }
 
 .hapolearn-footer {
-  background-color: #505353;
+  background-color: $lesson-tittle-color;
   color: white;
 
   .hapolearn-footer-quote {
@@ -421,7 +421,7 @@ header {
         padding: 15px;
         background-color: #f1f0f0;
         border-radius: 15px;
-        color: #505353;
+        color: $lesson-tittle-color;
         -webkit-text-stroke: 0.3px;
         @include font-Ops(normal, 12px, 17px);
       }
@@ -580,7 +580,7 @@ header {
     background-color: white;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
-    color: #505353;
+    color: $lesson-tittle-color;
     @include font-Ops(bold, 16px, 22px);
   }
 
@@ -589,7 +589,7 @@ header {
     background: #ffffff;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
-    color: #505353;
+    color: $lesson-tittle-color;
     padding: 6px 5px;
     @include font-Ops(bold, 16px, 22px);
   }
@@ -645,7 +645,7 @@ header {
       padding-top: 10px;
 
       .course-item-statistic-title {
-        color: #505353;
+        color: $lesson-tittle-color;
         @include fontUtm(bold, 25px, 31px);
       }
 
@@ -668,7 +668,7 @@ header {
 
   .course-detail-lesson {
     background-color: white;
-    color: #505353;
+    color: $lesson-tittle-color;
 
     .course-detail-lesson-header {
       border-bottom: 2px solid #dadada;
@@ -681,8 +681,8 @@ header {
   }
 
   .border-top-bot {
-    border-top: 1px solid #e2e0e0;
-    border-bottom: 1px solid #e2e0e0;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
   }
 }
 
@@ -696,7 +696,7 @@ header {
 
 .descriptions-course {
   background-color: white;
-  color: #505353;
+  color: $lesson-tittle-color;
 
   .descriptions-course-title {
     border-bottom: 1px solid #b2d235;
@@ -720,8 +720,8 @@ header {
   .course-info-text {
     background-color: white;
     padding: 20px;
-    border-top: 1px solid #e2e0e0;
-    border-bottom: 1px solid #e2e0e0;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
   }
 
   .btn-learn {
@@ -740,9 +740,9 @@ header {
   background-color: white;
 
   .other-list-item {
-    color: #505353;
-    border-top: 1px solid #e2e0e0;
-    border-bottom: 1px solid #e2e0e0;
+    color: $lesson-tittle-color;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
     @include fontUtm(normal, 16px, 20px);
   }
 }
@@ -809,7 +809,7 @@ header {
 }
 
 .lesson-program {
-  color: #505353;
+  color: $lesson-tittle-color;
   @include fontUtm(bold, 18px, 22px);
 
   i {
@@ -817,8 +817,8 @@ header {
   }
 
   .porgram-list {
-    border-top: 1px solid #f3f0f0;
-    border-bottom: 1px solid #f3f0f0;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
   }
 
   .program-type {
@@ -828,12 +828,12 @@ header {
 }
 
 .rating {
-  border-top: 1px solid #f3f0f0;
-  border-bottom: 1px solid #f3f0f0;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
 
   .rating-star {
     color: white;
-    background-color: #505353;
+    background-color: $lesson-tittle-color;
     border-radius: 5px;
 
     .rating-star-number {
@@ -851,13 +851,13 @@ header {
   }
 
   .total-star {
-    color: #505353;
+    color: $lesson-tittle-color;
     border: 1px solid #dfdfdf;
     border-radius: 5px;
     @include fontUtm(normal, 16px, 20px);
 
     .total-star-title {
-      color: #505353;
+      color: $lesson-tittle-color;
       @include fontUtm(bold, 16px, 20px);
     }
   }
@@ -869,12 +869,12 @@ header {
 }
 
 .user-reviews-title {
-  color: #505353;
+  color: $lesson-tittle-color;
   @include fontUtm(bold, 18px, 22px);
 }
 
 .user-review-item {
-  border-bottom: 1px solid #f3f0f0;
+  border-bottom: 1px solid $border-color;
 
   .user-review-item-info {
     img {
