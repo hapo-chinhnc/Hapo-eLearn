@@ -36,8 +36,8 @@
                             <div class="course-item-statistic-number">{{ $course->course_lesson }}</div>
                         </div>
                         <div>
-                            <div class="course-item-statistic-title">Quizzes</div>
-                            <div class="course-item-statistic-number">1,000</div>
+                            <div class="course-item-statistic-title">Reviews</div>
+                            <div class="course-item-statistic-number">{{ $course->review_times }}</div>
                         </div>
                     </div>
                 </div>

@@ -50,7 +50,7 @@
                                     <div class="teacher-info align-items-center mt-4">
                                         <img src="{{ asset('storage/images/nghialuuu.jpg') }}" class="teacher-info-img rounded-circle">
                                         <div class="d-flex flex-column ml-4">
-                                            <div class="teacher-info-name">Luu Trung Nghia</div>
+                                            <div class="teacher-info-name">{{ $course->teacher->name }}</div>
                                             <div class="teacher-info-exp">Second Year Teacher</div>
                                             <div class="d-flex mt-2">
                                                 <div class="teacher-info-gplus"><i class="fab fa-google-plus-g"></i></div>
@@ -68,81 +68,91 @@
                                     </div>
                                 </div>
                             </div>
+                            @php
+                                $fullStar = 5;
+                                $allRevewTimes = $course->review_times;
+                                $avgStar = $course->avg_star;
+                            @endphp
                             <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-                                <div class="lesson-detail-title pb-4">05 Reviews</div>
+                                <div class="lesson-detail-title pb-4">{{ $allRevewTimes }} Reviews</div>
                                 <div class="rating d-flex py-4">
                                     <div class="d-flex flex-column justify-content-center align-items-center rating-star p-5">
-                                        <div class="rating-star-number">5</div>
+                                        <div class="rating-star-number">{{ $avgStar }}/5</div>
                                         <div>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                                            @for ($i = 0; $i < $fullStar; $i++)
+                                                @if ($i < $avgStar)
+                                                    <i class="fas fa-star"></i>
+                                                @else
+                                                    <i class="far fa-star"></i>
+                                                @endif
+                                            @endfor
                                         </div>
-                                        <div class="rating-times">2 Ratings</div>
+                                        <div class="rating-times">{{ $allRevewTimes }} reviews</div>
                                     </div>
                                     <div class="total-star ml-4 px-3">
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">5 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-success" style="width: {{ $course->PrecentRating('5') }}%"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes('5') }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">4 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-info" style="width: {{ $course->PrecentRating('4') }}%"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes('4') }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">3 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-warning" style="width:{{ $course->PrecentRating('3') }}%"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes('3') }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">2 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-secondary" style="width:{{ $course->PrecentRating('2') }}%"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes('2') }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">1 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-danger" style="width:{{ $course->PrecentRating('1') }}%"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes('1') }}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="user-reviews">
                                     <div class="user-reviews-title my-4"><strong> Show all reviews</strong></div>
-                                    <div class="user-review-item">
-                                        <div class="user-review-item-info d-flex align-items-center">
-                                            <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
-                                            <div class="user-reviews-title mr-2">Nam Hoang</div>
-                                            <div class="mr-2">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
+                                    @foreach ($reviews as $review)
+                                        <div class="user-review-item mt-3">
+                                            <div class="user-review-item-info d-flex align-items-center">
+                                                <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
+                                                <div class="user-reviews-title mr-2">{{ $review->user->name }}</div>
+                                                @php
+                                                    $star = $review->rating;
+                                                @endphp
+                                                <div class="mr-2">
+                                                    @for ($i = 0; $i < $fullStar; $i++)
+                                                        @if ($i < $star)
+                                                            <i class="fas fa-star"></i>
+                                                        @else
+                                                            <i class="far fa-star"></i>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                                <div class="review-time ml-5">{{ $review->created_at }}</div>
                                             </div>
-                                            <div class="review-time ml-5">August 4, 2020 at 1:30 pm</div>
+                                            <div class="user-review-text mx-3 mt-3 pb-3">
+                                               {{ $review->content }}
+                                            </div>
                                         </div>
-                                        <div class="user-review-text mx-3 mt-3 pb-3">
-                                            Vivamus volutpat eros pulvinar velit laoreet,
-                                            sit amet egestas erat dignissim. Sed quis rutrum tellus,
-                                            sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum.
-                                            Nam nulla ipsum, venenatis malesuada felis quis,
-                                            ultricies convallis neque. Pellentesque tristique
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <div>
                                     <div class="lesson-detail-title">Leave a Comment</div>

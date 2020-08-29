@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LessonsTableSeeder::class);
         $this->call(UserCoursesTableSeeder::class);
         $this->call(UserLessonsSeeder::class);
+        $this->call(ReviewsSeeder::class);
     }
 }
