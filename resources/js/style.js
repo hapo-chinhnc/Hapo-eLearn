@@ -68,4 +68,15 @@ $(document).ready(function() {
           }
         ]
       });
+
+      var fullRating = $('#very-good-rating-val').val();
+      var goodRating = $('#good-rating-val').val();
+      var normalRating = $('#normal-rating-val').val();
+      var badRating = $('#bad-rating-val').val();
+      var veryBadRating = $('#very-bad-rating-val').val();
+      $('#very-good-rating').width(fullRating);
+      $('#good-rating').width(goodRating);
+      $('#normal-rating').width(normalRating);
+      $('#bad-rating').width(badRating);
+      $('#very-bad-rating').width(veryBadRating);
 });

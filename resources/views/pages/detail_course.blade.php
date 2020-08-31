@@ -50,7 +50,7 @@
                                     <div class="teacher-info align-items-center mt-4">
                                         <img src="{{ asset('storage/images/nghialuuu.jpg') }}" class="teacher-info-img rounded-circle">
                                         <div class="d-flex flex-column ml-4">
-                                            <div class="teacher-info-name">Luu Trung Nghia</div>
+                                            <div class="teacher-info-name">{{ $course->teacher->name }}</div>
                                             <div class="teacher-info-exp">Second Year Teacher</div>
                                             <div class="d-flex mt-2">
                                                 <div class="teacher-info-gplus"><i class="fab fa-google-plus-g"></i></div>
@@ -68,81 +68,88 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['fullStar']) }}%" hidden id="very-good-rating-val">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['goodRating']) }}%" hidden id="good-rating-val">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['normalRating']) }}%" hidden id="normal-rating-val">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['badRating']) }}%" hidden id="bad-rating-val">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['varyBadRating']) }}%" hidden id="very-bad-rating-val">
                             <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-                                <div class="lesson-detail-title pb-4">05 Reviews</div>
+                                <div class="lesson-detail-title pb-4">{{ $course->review_times }} Reviews</div>
                                 <div class="rating d-flex py-4">
                                     <div class="d-flex flex-column justify-content-center align-items-center rating-star p-5">
-                                        <div class="rating-star-number">5</div>
+                                        <div class="rating-star-number">{{ $course->avg_star }}/5</div>
                                         <div>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                                            @for ($i = 0; $i < $ratingStar['fullStar']; $i++)
+                                                @if ($i < $course->avg_star)
+                                                    <i class="fas fa-star"></i>
+                                                @else
+                                                    <i class="far fa-star"></i>
+                                                @endif
+                                            @endfor
                                         </div>
-                                        <div class="rating-times">2 Ratings</div>
+                                        <div class="rating-times">{{ $course->review_times }} reviews</div>
                                     </div>
                                     <div class="total-star ml-4 px-3">
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">5 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-success" id="very-good-rating"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['fullStar']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">4 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-info" id="good-rating"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['goodRating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">3 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-warning" id="normal-rating"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['normalRating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">2 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-danger" id="bad-rating"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['badRating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">1 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" style="width:50%"></div>
+                                                <div class="progress-bar bg-dark" id="very-bad-rating"></div>
                                             </div>
-                                            <div class="total-star-title">5</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['varyBadRating']) }}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="user-reviews">
                                     <div class="user-reviews-title my-4"><strong> Show all reviews</strong></div>
-                                    <div class="user-review-item">
-                                        <div class="user-review-item-info d-flex align-items-center">
-                                            <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
-                                            <div class="user-reviews-title mr-2">Nam Hoang</div>
-                                            <div class="mr-2">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
+                                    @foreach ($reviews as $review)
+                                        <div class="user-review-item mt-3">
+                                            <div class="user-review-item-info d-flex align-items-center">
+                                                <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
+                                                <div class="user-reviews-title mr-2">{{ $review->user->name }}</div>
+                                                <div class="mr-2">
+                                                    @for ($i = 0; $i < $ratingStar['fullStar']; $i++)
+                                                        @if ($i < $review->rating)
+                                                            <i class="fas fa-star"></i>
+                                                        @else
+                                                            <i class="far fa-star"></i>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                                <div class="review-time ml-5">{{ $review->created_at }}</div>
                                             </div>
-                                            <div class="review-time ml-5">August 4, 2020 at 1:30 pm</div>
+                                            <div class="user-review-text mx-3 mt-3 pb-3">
+                                               {{ $review->content }}
+                                            </div>
                                         </div>
-                                        <div class="user-review-text mx-3 mt-3 pb-3">
-                                            Vivamus volutpat eros pulvinar velit laoreet,
-                                            sit amet egestas erat dignissim. Sed quis rutrum tellus,
-                                            sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum.
-                                            Nam nulla ipsum, venenatis malesuada felis quis,
-                                            ultricies convallis neque. Pellentesque tristique
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <div>
                                     <div class="lesson-detail-title">Leave a Comment</div>
@@ -170,7 +177,7 @@
                         <i class="far fa-clock"></i> Times: {{ $course->course_time }} minutes
                     </div>
                     <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: #tag1 #tag2
+                        <i class="fas fa-hashtag"></i> Tags: {{ $course->course_tag }}
                     </div>
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: {{ $course->price }}

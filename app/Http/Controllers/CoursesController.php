@@ -20,6 +20,8 @@ class CoursesController extends Controller
         $course = Course::findOrFail($id);
         $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
         $lessons = $course->lessons()->paginate(config('variable.paginate_lesson'));
-        return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons']));
+        $reviews = $course->reviews;
+        $ratingStar = ['fullStar' => 5, 'goodRating' => 4, 'normalRating' => 3, 'badRating' => 2, 'varyBadRating' => 1];
+        return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews', 'ratingStar']));
     }
 }
