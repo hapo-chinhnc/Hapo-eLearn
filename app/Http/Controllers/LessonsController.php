@@ -12,6 +12,14 @@ class LessonsController extends Controller
     {
         $lesson = Lesson::findOrFail($id);
         $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
-        return view('pages.lesson_detail', compact(['lesson', 'otherCourses']));
+        $lessonReviews = $lesson->lessonReviews;
+        $ratingStar = [
+            'fullStar' => config('variable.full_star'),
+            'goodRating' => config('variable.good_rating'),
+            'normalRating' => config('variable.normal_rating'),
+            'badRating' => config('variable.bad_rating'),
+            'varyBadRating' => config('variable.very_bad_rating')
+        ];
+        return view('pages.lesson_detail', compact(['lesson', 'otherCourses', 'lessonReviews', 'ratingStar']));
     }
 }

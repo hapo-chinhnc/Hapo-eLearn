@@ -12,8 +12,8 @@
         @if ( count($courses) > 0)
             @foreach ($courses as $course)
                 <div class="course-item col-11 col-xl-5 row mb-4 p-4">
-                    <div class="course-item-image col-3 d-flex align-items-center">
-                        <img src="{{ asset('storage/images/HTMLCSS.png') }}" class="img-fluid">
+                    <div class="course-item-image">
+                        <img src="{{ asset('storage/images/css.jpg') }}" class="img-fluid courses-img">
                     </div>
                     <div class="course-item-content col-9">
                         <div class="course-item-content-tittle">

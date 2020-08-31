@@ -4,82 +4,29 @@
         <div class="hapolearn-feedback-text col-10 text-center m-auto col-md-8 pt-3 px-md-0 col-xl-6">What other students turned professionals have to say about us after learning with us and reaching their goals</div>
     </div>
     <div class="hapolearn-slick slider slick-slider my-0 col-md-11 mx-auto">
-        <div class="hapolearn-slick-item">
-            <div class="hapolearn-feedback-items border p-3 mt-2">
-                <span class="hapolearn-quote-borderleft"> “A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</span>
-            </div>
-            <div class="hapolearn-feedback-items-user mt-4 row ml-1">
-                <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ asset('storage/images/catt.png') }}">
+        @foreach ($reviews as $review)
+            <div class="hapolearn-slick-item">
+                <div class="hapolearn-feedback-items border p-3 mt-2">
+                    <span class="hapolearn-quote-borderleft"> “{{ $review->content }}”</span>
                 </div>
-                <div class="hapolearn-feedback-items-user-infor ml-3">
-                    <p class="hapolearn-feedback-items-user-infor-text">Nguyen Cong Chinh</p>
-                    <p class="hapolearn-feedback-items-user-infor-courses">PHP</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-        </div>
-        <div class="hapolearn-slick-item">
-            <div class="hapolearn-feedback-items border p-3 mt-2">
-            <span class="hapolearn-quote-borderleft"> “A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</span>
-            </div>
-            <div class="hapolearn-feedback-items-user mt-4 row ml-1">
-                <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ asset('storage/images/catt.png') }}">
-                </div>
-                <div class="hapolearn-feedback-items-user-infor ml-3">
-                    <p class="hapolearn-feedback-items-user-infor-text">Some One Else</p>
-                    <p class="hapolearn-feedback-items-user-infor-courses">CSS</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                <div class="hapolearn-feedback-items-user mt-4 row ml-1">
+                    <div class="hapolearn-feedback-items-user-picture">
+                        <img src="{{ asset('storage/images/user-img.jpg') }}" class="user-avatar">
+                    </div>
+                    <div class="hapolearn-feedback-items-user-infor ml-3">
+                        <p class="hapolearn-feedback-items-user-infor-text">{{ $review->user->name }}</p>
+                        <p class="hapolearn-feedback-items-user-infor-courses">PHP</p>
+                        @for ($i = 0; $i < $fullStar; $i++)
+                            @if ($i < $review->rating)
+                                <i class="fas fa-star"></i>
+                            @else
+                                <i class="far fa-star"></i>
+                            @endif
+                        @endfor
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="hapolearn-slick-item">
-            <div class="hapolearn-feedback-items border p-3 mt-2">
-            <span class="hapolearn-quote-borderleft"> “A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</span>
-            </div>
-            <div class="hapolearn-feedback-items-user mt-4 row ml-1">
-                <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ asset('storage/images/catt.png') }}">
-                </div>
-                <div class="hapolearn-feedback-items-user-infor ml-3">
-                    <p class="hapolearn-feedback-items-user-infor-text">Some One Else 1</p>
-                    <p class="hapolearn-feedback-items-user-infor-courses">SCSS</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-        </div>
-        <div class="hapolearn-slick-item">
-            <div class="hapolearn-feedback-items border p-3 mt-2">
-            <span class="hapolearn-quote-borderleft"> “A wonderful course on how to start. Eddie beautifully conveys all essentials of a becoming a good Angular developer. Very glad to have taken this course. Thank you Eddie Bryan.”</span>
-            </div>
-            <div class="hapolearn-feedback-items-user mt-4 row ml-1">
-                <div class="hapolearn-feedback-items-user-picture">
-                    <img src="{{ asset('storage/images/catt.png') }}">
-                </div>
-                <div class="hapolearn-feedback-items-user-infor ml-3">
-                    <p class="hapolearn-feedback-items-user-infor-text">Some One Else 2</p>
-                    <p class="hapolearn-feedback-items-user-infor-courses">PHP</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
 <input type="text" hidden value="<img src='{{ asset('storage/images/btn-left.png') }}' class='slide-btn-left'>" id="slide-btn-left">

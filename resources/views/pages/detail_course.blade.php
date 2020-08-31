@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <div class="course-detail-image d-flex justify-content-center mt-3">
-                    <img src="{{ asset('storage/images/HTMLCSS.png') }}" class="img-fluid p-5">
+                <div class="course-detail-image d-flex justify-content-center">
+                    <img src="{{ asset('storage/images/HTMLCSS.jpg') }}" class="img-fluid course-img">
                 </div>
                 <div class="course-detail w-100 d-flex flex-column justify-content-center">
                     <div class="course-detail-lesson w-100 p-3">
@@ -48,7 +48,7 @@
                                 <div class="lesson-detail-title">Main Teacher</div>
                                 <div class="mt-4">
                                     <div class="teacher-info align-items-center mt-4">
-                                        <img src="{{ asset('storage/images/nghialuuu.jpg') }}" class="teacher-info-img rounded-circle">
+                                        <img src="{{ asset('storage/images/user-img.jpg') }}" class="teacher-info-img rounded-circle">
                                         <div class="d-flex flex-column ml-4">
                                             <div class="teacher-info-name">{{ $course->teacher->name }}</div>
                                             <div class="teacher-info-exp">Second Year Teacher</div>
@@ -68,11 +68,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['fullStar']) }}%" hidden id="very-good-rating-val">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['goodRating']) }}%" hidden id="good-rating-val">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['normalRating']) }}%" hidden id="normal-rating-val">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['badRating']) }}%" hidden id="bad-rating-val">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['varyBadRating']) }}%" hidden id="very-bad-rating-val">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['fullStar']) }}%" hidden id="fullStarVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['goodRating']) }}%" hidden id="goodRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['normalRating']) }}%" hidden id="normalRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['badRating']) }}%" hidden id="badRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['varyBadRating']) }}%" hidden id="veryBadRatingVal">
                             <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                                 <div class="lesson-detail-title pb-4">{{ $course->review_times }} Reviews</div>
                                 <div class="rating d-flex py-4">
@@ -93,35 +93,35 @@
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">5 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-success" id="very-good-rating"></div>
+                                                <div class="progress-bar bg-success" id="fullStar"></div>
                                             </div>
                                             <div class="total-star-title">{{ $course->RatingTimes($ratingStar['fullStar']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">4 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-info" id="good-rating"></div>
+                                                <div class="progress-bar bg-info" id="goodRating"></div>
                                             </div>
                                             <div class="total-star-title">{{ $course->RatingTimes($ratingStar['goodRating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">3 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-warning" id="normal-rating"></div>
+                                                <div class="progress-bar bg-warning" id="normalRating"></div>
                                             </div>
                                             <div class="total-star-title">{{ $course->RatingTimes($ratingStar['normalRating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">2 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-danger" id="bad-rating"></div>
+                                                <div class="progress-bar bg-danger" id="badRating"></div>
                                             </div>
                                             <div class="total-star-title">{{ $course->RatingTimes($ratingStar['badRating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">1 star</div>
                                             <div class="progress mx-2">
-                                                <div class="progress-bar bg-dark" id="very-bad-rating"></div>
+                                                <div class="progress-bar bg-dark" id="veryBadRating"></div>
                                             </div>
                                             <div class="total-star-title">{{ $course->RatingTimes($ratingStar['varyBadRating']) }}</div>
                                         </div>
@@ -162,7 +162,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="descriptions-course p-3 mt-3">
+                <div class="descriptions-course p-3">
                     <div class="descriptions-course-title pb-3">Descriptions course</div>
                     <div class="descriptions-course-content mt-2">{{ $course->description }}</div>
                 </div>

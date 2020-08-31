@@ -2,7 +2,7 @@
     <section class="hapolearn-othercourses mt-3 mt-md-5 d-md-flex flex-column flex-md-row justify-content-center">
         @foreach ($mainCourses->slice(3) as $course)
             <div class="card hapolearn-courses-items col-md-4 no-gutters-custom col-12">
-                <img class="card-img-top hapolearn-courses-items-logo-css" src="{{ asset('storage/images/CSS.png') }}">
+                <img class="card-img-top img-fluid home-course-img" src="{{ asset('storage/images/css.jpg') }}">
                 <div class="card-body no-gutters-custom hapolearn-card-body p-2">
                     <div class="card-title hapolearn-card-title pt-xl-2">{{ $course->title }}</div>
                     <div class="card-text hapolearn-card-text m-auto px-xl-4">{{ $course->description }}</div>

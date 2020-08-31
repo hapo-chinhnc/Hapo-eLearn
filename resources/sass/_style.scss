@@ -101,25 +101,6 @@ header {
   border-radius: 15px;
   height: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-
-  .hapolearn-courses-items-logo-blue {
-    background-color: #3f6185;
-    height: 50%;
-    object-fit: contain;
-    padding: 50px;
-    border-radius: 15px 15px 0 0;
-  }
-
-  .hapolearn-courses-items-logo-red {
-    background-color: #dc594c;
-    @extend .hapolearn-courses-items-logo-blue;
-  }
-
-  .hapolearn-courses-items-logo-php {
-    background-color: #556598;
-    padding: 30px;
-    @extend .hapolearn-courses-items-logo-blue;
-  }
 }
 
 .hapolearn-card-title {
@@ -148,29 +129,6 @@ header {
     color: white;
     background-color: #bce41b;
     box-shadow: none;
-  }
-}
-
-.hapolearn-othercourses {
-  .hapolearn-courses-items {
-    .hapolearn-courses-items-logo-css {
-      background-color: #24abe2;
-      height: 50%;
-      object-fit: contain;
-      padding: 50px;
-      border-radius: 15px 15px 0 0;
-    }
-
-    .hapolearn-courses-items-logo-red {
-      background-color: #dc594c;
-      @extend .hapolearn-courses-items-logo-blue;
-    }
-
-    .hapolearn-courses-items-logo-java {
-      background-color: #1b75bb;
-      padding: 25px;
-      @extend .hapolearn-courses-items-logo-blue;
-    }
   }
 }
 
@@ -608,14 +566,6 @@ header {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
     background-color: white;
 
-    .course-item-image {
-      height: 105px;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      background-color: #3f6185;
-      border-radius: 50%;
-    }
-
     .course-item-content {
       color: #505050;
 
@@ -659,8 +609,7 @@ header {
 }
 
 .course-detail-image {
-  border-radius: 10px;
-  background-color: #3f6185;
+  margin-top: 30px;
 }
 
 .course-detail {
@@ -695,6 +644,7 @@ header {
 }
 
 .descriptions-course {
+  margin-top: 30px;
   background-color: white;
   color: $lesson-tittle-color;
 
@@ -898,4 +848,24 @@ header {
     color: #949292;
     @include fontUtm(normal, 18px, 26px);
   }
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.course-img {
+  border-radius: 10px;
+}
+
+.home-course-img {
+  border-radius: 15px 15px 0 0;
+}
+
+.courses-img {
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
 }
