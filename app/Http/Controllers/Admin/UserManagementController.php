@@ -16,8 +16,8 @@ class UserManagementController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id)->delete();
-        //->with('success', trans('messages.deleted'))
+        $user = User::findOrFail($id);
+        $user->delete();
         return redirect()->route('user-management.index');
     }
 
