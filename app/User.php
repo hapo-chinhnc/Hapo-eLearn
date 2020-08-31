@@ -9,7 +9,17 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    const ROLE = [
+        'admin' => 0,
+        'user' => 1,
+        'teacher' => 2
+    ];
 
+    const ROLE_LABEL = [
+        'admin' => 'Admin',
+        'user' => 'Student',
+        'teacher' => 'Teacher'
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -36,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoleLabelAttribute()
+    {
+        return self::ROLE_LABEL[array_flip(self::ROLE)[$this->role]];
+    }
 }

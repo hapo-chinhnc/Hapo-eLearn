@@ -18,3 +18,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('courses', 'CoursesController');
 Auth::routes();
 Route::get('/lesson-detail/{id}', 'LessonsController@show')->name('lesson.detail');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', 'Admin\AdminController@index')->name('admin.index');
+    Route::resource('/user-management', 'Admin\UserManagementController');
+});
