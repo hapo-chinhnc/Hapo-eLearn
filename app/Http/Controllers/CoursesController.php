@@ -21,6 +21,7 @@ class CoursesController extends Controller
         $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
         $lessons = $course->lessons()->paginate(config('variable.paginate_lesson'));
         $reviews = $course->reviews;
-        return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews']));
+        $ratingStar = ['fullStar' => 5, 'goodRating' => 4, 'normalRating' => 3, 'badRating' => 2, 'varyBadRating' => 1];
+        return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews', 'ratingStar']));
     }
 }
