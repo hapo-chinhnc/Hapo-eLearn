@@ -160,7 +160,7 @@
                                                 <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
                                                 <div class="user-reviews-title mr-2">{{ $lessonReview->user->name }}</div>
                                                 <div class="mr-2">
-                                                    @for ($i = 0; $i < 5; $i++)
+                                                    @for ($i = 0; $i < $ratingStar['fullStar']; $i++)
                                                         @if ($i < $lessonReview->rating)
                                                             <i class="fas fa-star"></i>
                                                         @else
