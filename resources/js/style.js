@@ -79,4 +79,7 @@ $(document).ready(function() {
       $('#normalRating').width(normalRating);
       $('#badRating').width(badRating);
       $('#veryBadRating').width(veryBadRating);
+
+      var role = $('#roleVal').val();
+      $('option[value=' + role + ']').attr('selected', true);
 });
