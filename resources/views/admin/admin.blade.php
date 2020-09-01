@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="img/png" href="{{ asset('storage/images/favicon.png') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

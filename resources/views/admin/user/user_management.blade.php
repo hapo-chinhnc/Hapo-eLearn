@@ -19,11 +19,11 @@
                     <td class="align-middle">{{ ++$key }}</td>
                     <td class="align-middle">{{ $user->name }}</td>
                     <td class="align-middle">{{ $user->email }}</td>
-                    <td class="align-middle">Password Feild</td>
+                    <td class="align-middle"><img src="{{ url('storage/images', $user->avatar) }}" class="user-avatar"></td>
                     <td class="align-middle">{{ $user->phone }}</td>
                     <td class="align-middle">{{ $user->role_label }}</td>
                     <td class="align-middle">
-                        <a href=""><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
+                        <a href="{{ route('user-management.edit', $user->id) }}"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
                         <form action="{{ route('user-management.destroy', $user ->id) }}" method="POST" class="delete-form float-right">
                             @method('DELETE')
                             @csrf
@@ -34,5 +34,4 @@
             @endforeach
         </tbody>
     </table>
-
 @endsection
