@@ -35,7 +35,7 @@
                                                     @if ( $checkLearnLesson[$key] > 0)
                                                         <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learn">Continue</button></a>
                                                     @else
-                                                        <form action="{{ route('lessonUser.store') }}" method="GET" class="text-center">
+                                                        <form action="{{ route('lesson_users.store') }}" method="GET" class="text-center">
                                                             @csrf
                                                             <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
                                                             <input type="text" hidden value="{{ $lesson->id }}" name="lesson_id">
@@ -55,14 +55,14 @@
                                     @endif
                                     @if ($pivotId != 0)
                                         <div class="w-100 text-center">
-                                            <form action="{{ route('userCourse.destroy',  $pivotId) }}" method="GET" class="delete-form">
+                                            <form action="{{ route('users_course.destroy',  $pivotId) }}" method="GET" class="delete-form">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Leave This Course</i></button>
                                             </form>
                                         </div>
                                     @else
-                                        <form action="{{ route('userCourse.store') }}" method="GET" class="text-center">
+                                        <form action="{{ route('users_course.store') }}" method="GET" class="text-center">
                                             @csrf
                                             <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
                                             <input type="text" name="course_id" value="{{ $course->id }}" hidden>
