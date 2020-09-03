@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Course;
+use App\Models\Lesson;
 
 class User extends Authenticatable
 {
@@ -50,5 +52,15 @@ class User extends Authenticatable
     public function getRoleLabelAttribute()
     {
         return self::ROLE_LABEL[array_flip(self::ROLE)[$this->role]];
+    }
+
+    public function learned()
+    {
+        return $this->belongsToMany(Course::class, 'user_course')->withPivot('id');
+    }
+
+    public function lessonLearned()
+    {
+        return $this->belongsToMany(Lesson::class)->withPivot('id');
     }
 }
