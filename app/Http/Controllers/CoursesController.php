@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
 {
@@ -21,7 +22,19 @@ class CoursesController extends Controller
         $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
         $lessons = $course->lessons()->paginate(config('variable.paginate_lesson'));
         $reviews = $course->reviews;
-        $ratingStar = ['fullStar' => 5, 'goodRating' => 4, 'normalRating' => 3, 'badRating' => 2, 'varyBadRating' => 1];
-        return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews', 'ratingStar']));
+        $findPivote = $course->learner()->wherePivot('user_id', Auth::id())->first();
+        $pivotId = 0;
+        if ($findPivote == true) {
+            $pivotId = $findPivote->pivot->id;
+        }
+        $ratingStar = [
+            'full_star' => config('variable.full_star'),
+            'good_rating' => config('variable.good_rating'),
+            'normal_rating' => config('variable.normal_rating'),
+            'bad_rating' => config('variable.bad_rating'),
+            'very_bad_rating' => config('variable.very_bad_rating')
+        ];
+        return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews',
+            'ratingStar', 'pivotId']));
     }
 }

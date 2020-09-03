@@ -6,7 +6,7 @@
                 <div class="card-body no-gutters-custom hapolearn-card-body p-2">
                     <div class="card-title hapolearn-card-title pt-xl-2">{{ $course->title }}</div>
                     <div class="card-text hapolearn-card-text m-auto px-xl-4">{{ $course->description }}</div>
-                    <a href="#" class="d-flex justify-content-center text-decoration-none mb-2"><button class="btn hapolearn-courses-btn mb-3 px-md-4 mt-xl-3 mb-xl-1">Take This Course</button></a>
+                    <a href="{{ route('courses.show', $course->id) }}" class="d-flex justify-content-center text-decoration-none mb-2"><button class="btn hapolearn-courses-btn mb-3 px-md-4 mt-xl-3 mb-xl-1">Take This Course</button></a>
                 </div>
             </div>
         @endforeach

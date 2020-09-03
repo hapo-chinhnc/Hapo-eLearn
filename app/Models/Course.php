@@ -92,4 +92,9 @@ class Course extends Model
         $percent = $query / $allRatingTimes * 100;
         return $percent;
     }
+
+    public function learner()
+    {
+        return $this->belongsToMany(User::class, 'user_course')->withPivot('id');
+    }
 }

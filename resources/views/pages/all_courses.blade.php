@@ -23,8 +23,12 @@
                             {{ $course->description }}
                         </div>
                     </div>
-                    <div class="col-3 offset-8">
-                       <a href="{{ route('courses.show', $course->id) }}"><button class="btn course-item-btn px-4 mt-4">More</button></a>
+                    <div class="col-3 offset-9 d-flex">
+                        @if (Auth::check())
+                            <a href="{{ route('courses.show', $course->id) }}"><button class="btn course-item-btn px-4 mt-4">More</button></a>
+                        @else
+                            <a href="#" href="#" data-toggle="modal" data-target="#loginRegister"><button class="btn course-item-btn px-4 mt-4">More</button></a>
+                        @endif
                     </div>
                     <div class="course-item-statistic col-12 d-flex justify-content-between">
                         <div>

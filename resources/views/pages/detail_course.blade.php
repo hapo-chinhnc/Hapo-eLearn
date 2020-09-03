@@ -42,6 +42,22 @@
                                     @else
                                         <h1 class="text-center mt-3">No lesson available</h1>
                                     @endif
+                                    @if ($pivotId != 0)
+                                        <div class="w-100 text-center">
+                                            <form action="{{ route('userCourse.destroy',  $pivotId) }}" method="GET" class="delete-form">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Leave This Course</i></button>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <form action="{{ route('userCourse.store') }}" method="GET" class="text-center">
+                                            @csrf
+                                            <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
+                                            <input type="text" name="course_id" value="{{ $course->id }}" hidden>
+                                            <input type="submit" value="Take This Course" class="btn px-4 mt-4 hapolearn-btn" onclick="return confirm('Take This Course?');">
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-teacher" role="tabpanel" aria-labelledby="nav-teacher-tab">
@@ -68,18 +84,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['fullStar']) }}%" hidden id="fullStarVal">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['goodRating']) }}%" hidden id="goodRatingVal">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['normalRating']) }}%" hidden id="normalRatingVal">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['badRating']) }}%" hidden id="badRatingVal">
-                            <input type="text" value="{{ $course->PrecentRating($ratingStar['varyBadRating']) }}%" hidden id="veryBadRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['full_star']) }}%" hidden id="fullStarVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['good_rating']) }}%" hidden id="goodRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['normal_rating']) }}%" hidden id="normalRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['bad_rating']) }}%" hidden id="badRatingVal">
+                            <input type="text" value="{{ $course->PrecentRating($ratingStar['very_bad_rating']) }}%" hidden id="veryBadRatingVal">
                             <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                                 <div class="lesson-detail-title pb-4">{{ $course->review_times }} Reviews</div>
                                 <div class="rating d-flex py-4">
                                     <div class="d-flex flex-column justify-content-center align-items-center rating-star p-5">
                                         <div class="rating-star-number">{{ $course->avg_star }}/5</div>
                                         <div>
-                                            @for ($i = 0; $i < $ratingStar['fullStar']; $i++)
+                                            @for ($i = 0; $i < $ratingStar['full_star']; $i++)
                                                 @if ($i < $course->avg_star)
                                                     <i class="fas fa-star"></i>
                                                 @else
@@ -95,35 +111,35 @@
                                             <div class="progress mx-2">
                                                 <div class="progress-bar bg-success" id="fullStar"></div>
                                             </div>
-                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['fullStar']) }}</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['full_star']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">4 star</div>
                                             <div class="progress mx-2">
                                                 <div class="progress-bar bg-info" id="goodRating"></div>
                                             </div>
-                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['goodRating']) }}</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['good_rating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">3 star</div>
                                             <div class="progress mx-2">
                                                 <div class="progress-bar bg-warning" id="normalRating"></div>
                                             </div>
-                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['normalRating']) }}</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['normal_rating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">2 star</div>
                                             <div class="progress mx-2">
                                                 <div class="progress-bar bg-danger" id="badRating"></div>
                                             </div>
-                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['badRating']) }}</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['bad_rating']) }}</div>
                                         </div>
                                         <div class="d-flex align-items-center my-3 justify-content-between">
                                             <div class="total-star-title">1 star</div>
                                             <div class="progress mx-2">
                                                 <div class="progress-bar bg-dark" id="veryBadRating"></div>
                                             </div>
-                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['varyBadRating']) }}</div>
+                                            <div class="total-star-title">{{ $course->RatingTimes($ratingStar['very_bad_rating']) }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +151,7 @@
                                                 <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
                                                 <div class="user-reviews-title mr-2">{{ $review->user->name }}</div>
                                                 <div class="mr-2">
-                                                    @for ($i = 0; $i < $ratingStar['fullStar']; $i++)
+                                                    @for ($i = 0; $i < $ratingStar['full_star']; $i++)
                                                         @if ($i < $review->rating)
                                                             <i class="fas fa-star"></i>
                                                         @else
