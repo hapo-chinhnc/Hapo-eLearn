@@ -61,6 +61,6 @@ class User extends Authenticatable
 
     public function lessonLearned()
     {
-        return $this->belongsToMany(Lesson::class)->withPivot('id');
+        return $this->belongsToMany(Lesson::class, 'user_lesson')->withPivot('id');
     }
 }

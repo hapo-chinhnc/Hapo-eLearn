@@ -27,6 +27,16 @@ class CoursesController extends Controller
         if ($findPivote == true) {
             $pivotId = $findPivote->pivot->id;
         }
+        $checkLearnLesson = array();
+        $pivotIdLesson = 0;
+        foreach ($lessons as $lesson) {
+            $findPivotLesson = $lesson->lessonLearner()->wherePivot('user_id', Auth::id())->first();
+            $pivotIdLesson = 0;
+            if ($findPivotLesson == true) {
+                $pivotIdLesson = $findPivotLesson->pivot->id;
+            }
+            array_push($checkLearnLesson, $pivotIdLesson);
+        }
         $ratingStar = [
             'full_star' => config('variable.full_star'),
             'good_rating' => config('variable.good_rating'),
@@ -35,6 +45,6 @@ class CoursesController extends Controller
             'very_bad_rating' => config('variable.very_bad_rating')
         ];
         return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews',
-            'ratingStar', 'pivotId']));
+            'ratingStar', 'pivotId', 'checkLearnLesson']));
     }
 }

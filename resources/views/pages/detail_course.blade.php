@@ -30,8 +30,19 @@
                                     @if (count($lessons) > 0)
                                         @foreach ($lessons as $key => $lesson)
                                             <div class="d-flex justify-content-between align-items-center p-3 border-top-bot">
-                                                <p class="my-auto">{{ ++$key . ": " . $lesson->title }}</p>
-                                                <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learn">Learn</button></a>
+                                                <p class="my-auto">{{ $key+1 . ": " . $lesson->title }}</p>
+                                                @if ($pivotId != 0)
+                                                    @if ( $checkLearnLesson[$key] > 0)
+                                                        <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learn">Continue</button></a>
+                                                    @else
+                                                        <form action="{{ route('lessonUser.store') }}" method="GET" class="text-center">
+                                                            @csrf
+                                                            <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
+                                                            <input type="text" hidden value="{{ $lesson->id }}" name="lesson_id">
+                                                            <input type="submit" value="Learn" class="btn btn-learn">
+                                                        </form>
+                                                    @endif
+                                                @endif
                                             </div>
                                         @endforeach
                                         <div class="mt-4 ">

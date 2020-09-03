@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Course;
 use App\Models\UserLesson;
 use App\Models\Review;
+use App\User;
 
 class Lesson extends Model
 {
@@ -56,5 +57,10 @@ class Lesson extends Model
         $allRatingTimes = ($this->lesson_review_times) ?: 1;
         $percent = $query / $allRatingTimes * 100;
         return $percent;
+    }
+
+    public function lessonLearner()
+    {
+        return $this->belongsToMany(User::class, 'user_lesson')->withPivot('id');
     }
 }

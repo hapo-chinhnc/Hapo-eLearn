@@ -25,3 +25,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');
     Route::resource('/user-management', 'Admin\UserManagementController');
 });
+Route::get('/lesson-user', 'User\LessonUserController@store')->name('lessonUser.store');
