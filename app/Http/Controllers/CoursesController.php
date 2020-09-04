@@ -27,15 +27,15 @@ class CoursesController extends Controller
         if ($findPivote == true) {
             $pivotId = $findPivote->pivot->id;
         }
-        $checkLearnLesson = array();
+        $checkLearnLesson = [];
         $pivotIdLesson = 0;
         foreach ($lessons as $lesson) {
             $findPivotLesson = $lesson->lessonLearner()->wherePivot('user_id', Auth::id())->first();
             $pivotIdLesson = 0;
-            if ($findPivotLesson == true) {
+            if ($findPivotLesson) {
                 $pivotIdLesson = $findPivotLesson->pivot->id;
             }
-            array_push($checkLearnLesson, $pivotIdLesson);
+            $checkLearnLesson[] = $pivotIdLesson;
         }
         $ratingStar = [
             'full_star' => config('variable.full_star'),
