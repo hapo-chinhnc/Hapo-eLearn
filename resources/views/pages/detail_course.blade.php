@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('title')
+    Course | {{ $course->title }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
@@ -17,11 +20,23 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="filter-find mb-3">
+                        <div class="filter-find mb-3 d-flex justify-content-between">
                             <div class="d-flex align-items-center">
-                                <button class="btn filter-btn mr-2"><i class="fas fa-sliders-h mr-1"></i>Filter</button>
-                                <input type="text" placeholder="Search..." class="find-input">
-                                <i class="fas fa-search search-icon"></i>
+                                <form action="">
+                                    <input type="text" placeholder="Search..." class="find-input p-2">
+                                    <i class="fas fa-search search-icon"></i>
+                                    <input type="submit" class="find-btn m-n3" value="Search">
+                                </form>
+                            </div>
+                            <div>
+                                @if ($pivotId == 0)
+                                    <form action="{{ route('users_course.store') }}" method="GET" class="text-center">
+                                        @csrf
+                                        <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
+                                        <input type="text" name="course_id" value="{{ $course->id }}" hidden>
+                                        <input type="submit" value="Take This Course" class="btn take-leave" onclick="return confirm('Take This Course?');">
+                                    </form>
+                                @endif
                             </div>
                         </div>
                         <div class="tab-content lesson-detail" id="nav-tabContent">
@@ -52,22 +67,6 @@
                                         </div>
                                     @else
                                         <h1 class="text-center mt-3">No lesson available</h1>
-                                    @endif
-                                    @if ($pivotId != 0)
-                                        <div class="w-100 text-center">
-                                            <form action="{{ route('users_course.destroy',  $pivotId) }}" method="GET" class="delete-form">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Leave This Course</i></button>
-                                            </form>
-                                        </div>
-                                    @else
-                                        <form action="{{ route('users_course.store') }}" method="GET" class="text-center">
-                                            @csrf
-                                            <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
-                                            <input type="text" name="course_id" value="{{ $course->id }}" hidden>
-                                            <input type="submit" value="Take This Course" class="btn px-4 mt-4 hapolearn-btn" onclick="return confirm('Take This Course?');">
-                                        </form>
                                     @endif
                                 </div>
                             </div>
@@ -158,19 +157,27 @@
                                     <div class="user-reviews-title my-4"><strong> Show all reviews</strong></div>
                                     @foreach ($reviews as $review)
                                         <div class="user-review-item mt-3">
-                                            <div class="user-review-item-info d-flex align-items-center">
-                                                <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
-                                                <div class="user-reviews-title mr-2">{{ $review->user->name }}</div>
-                                                <div class="mr-2">
-                                                    @for ($i = 0; $i < $ratingStar['full_star']; $i++)
-                                                        @if ($i < $review->rating)
-                                                            <i class="fas fa-star"></i>
-                                                        @else
-                                                            <i class="far fa-star"></i>
-                                                        @endif
-                                                    @endfor
+                                            <div class="user-review-item-info d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
+                                                    <div class="user-reviews-title mr-2">{{ $review->user->name }}</div>
+                                                    <div class="mr-2">
+                                                        @for ($i = 0; $i < $ratingStar['full_star']; $i++)
+                                                            @if ($i < $review->rating)
+                                                                <i class="fas fa-star icon"></i>
+                                                            @else
+                                                                <i class="far fa-star icon"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                    <div class="review-time ml-5">{{ $review->created_at }}</div>
                                                 </div>
-                                                <div class="review-time ml-5">{{ $review->created_at }}</div>
+                                                @if (($review->user->id) == Auth::id())
+                                                    <form action="{{ route('review.destroy',  $review->id) }}" method="GET" class="delete-form">
+                                                        @method('DELETE')
+                                                        <button class="btn p-0" onclick="return confirm('Delete This ?')"><i class="fas fa-trash trash"></i></button>
+                                                    </form>
+                                                @endif
                                             </div>
                                             <div class="user-review-text mx-3 mt-3 pb-3">
                                                {{ $review->content }}
@@ -180,8 +187,34 @@
                                 </div>
                                 <div>
                                     <div class="lesson-detail-title">Leave a Comment</div>
-                                    <textarea name="comment" id="" cols="30" rows="5" class="form-control mb-3" placeholder="Message"></textarea>
-                                    <button class="btn btn-learn px-3 ml-3">Send</button>
+                                    <form action="{{ route('review.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <textarea name="content" cols="30" rows="5" class="form-control mb-3 w-100" required placeholder="Message"></textarea>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mr-3 lesson-detail-title">Vote:</div>
+                                                <input type="text" name="course_id" value="{{ $course->id }}" hidden>
+                                                <fieldset class="rating mt-2">
+                                                    <input type="radio" id="starFive" name="rating" value="5" required/><label for="starFive" title="Rocks!">5 stars</label>
+                                                    <input type="radio" id="starFor" name="rating" value="4" /><label for="starFor" title="Pretty good">4 stars</label>
+                                                    <input type="radio" id="starThree" name="rating" value="3" /><label for="starThree" title="Meh">3 stars</label>
+                                                    <input type="radio" id="starTwo" name="rating" value="2" /><label for="starTwo" title="Kinda bad">2 stars</label>
+                                                    <input type="radio" id="starOne" name="rating" value="1" /><label for="starOne" title="Sucks big time">1 star</label>
+                                                </fieldset>
+                                            </div>
+                                            <button type="submit" class="btn btn-learn px-3 ml-3"> Send </button>
+                                        </div>
+                                    </form>
+                                    @if (count($errors)>0)
+                                        <div class="alert alert-danger alert-dismissible fade show">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <ul>
+                                                @foreach ($errors ->all() as $err)
+                                                    <li>{{ $err }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -204,11 +237,22 @@
                         <i class="far fa-clock"></i> Times: {{ $course->course_time }} minutes
                     </div>
                     <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: {{ $course->course_tag }}
+                        <i class="fas fa-hashtag"></i> Tags: <div class="text-info">{{ $course->course_tag }}</div>
                     </div>
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: {{ $course->price }}
                     </div>
+                    @if($pivotId)
+                        <div class="course-info-text">
+                            <div class="w-100 text-center">
+                                <form action="{{ route('users_course.destroy',  $pivotId) }}" method="GET" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn take-leave" onclick="return confirm('Leave Course?');">Leave This Course</i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @endif
                     <div class="mt-3">
                         <div class="course-info-tittle d-flex justify-content-center align-items-center">Other Courses</div>
                         <div class="other-list">

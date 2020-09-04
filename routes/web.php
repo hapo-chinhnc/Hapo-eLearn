@@ -26,3 +26,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/user-management', 'Admin\UserManagementController');
 });
 Route::get('/lesson-user', 'User\LessonUserController@store')->name('lesson_users.store');
+Route::post('/review', 'User\ReviewController@store')->name('review.store');
+Route::get('/review/{id}', 'User\ReviewController@destroy')->name('review.destroy');
+Route::post('/lesson-review', 'User\LessonReviewController@store')->name('lesson_review.store');
