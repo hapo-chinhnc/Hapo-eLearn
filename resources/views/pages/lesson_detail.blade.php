@@ -1,4 +1,7 @@
 @extends('layouts.home')
+@section('title')
+    Lesson | {{ $lesson->title }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
@@ -156,19 +159,27 @@
                                     <div class="user-reviews-title my-4"><strong> Show all reviews</strong></div>
                                     @foreach ($lessonReviews as $lessonReview)
                                         <div class="user-review-item">
-                                            <div class="user-review-item-info d-flex align-items-center">
-                                                <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
-                                                <div class="user-reviews-title mr-2">{{ $lessonReview->user->name }}</div>
-                                                <div class="mr-2">
-                                                    @for ($i = 0; $i < $ratingStar['full_star']; $i++)
-                                                        @if ($i < $lessonReview->rating)
-                                                            <i class="fas fa-star"></i>
-                                                        @else
-                                                            <i class="far fa-star"></i>
-                                                        @endif
-                                                    @endfor
+                                            <div class="user-review-item-info d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
+                                                    <div class="user-reviews-title mr-2">{{ $lessonReview->user->name }}</div>
+                                                    <div class="mr-2">
+                                                        @for ($i = 0; $i < $ratingStar['full_star']; $i++)
+                                                            @if ($i < $lessonReview->rating)
+                                                                <i class="fas fa-star icon"></i>
+                                                            @else
+                                                                <i class="far fa-star icon"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                    <div class="review-time ml-5">{{ $lessonReview->created_at }}</div>
                                                 </div>
-                                                <div class="review-time ml-5">{{ $lessonReview->created_at }}</div>
+                                                @if (($lessonReview->user->id) == Auth::id())
+                                                    <form action="{{ route('review.destroy',  $lessonReview->id) }}" method="GET" class="delete-form">
+                                                        @method('DELETE')
+                                                        <button class="btn p-0" onclick="return confirm('Delete This ?')"><i class="fas fa-trash trash"></i></button>
+                                                    </form>
+                                                @endif
                                             </div>
                                             <div class="user-review-text mx-3 mt-3 pb-3">
                                                 {{ $lessonReview->content }}
@@ -178,8 +189,34 @@
                                 </div>
                                 <div>
                                     <div class="lesson-detail-title">Leave a Comment</div>
-                                    <textarea name="comment" id="" cols="30" rows="5" class="form-control mb-3" placeholder="Message"></textarea>
-                                    <button class="btn btn-learn px-3 ml-3">Send</button>
+                                    <form action="{{ route('lesson_review.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <textarea name="content" cols="30" rows="5" class="form-control mb-3 w-100" required placeholder="Message"></textarea>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mr-3 lesson-detail-title">Vote:</div>
+                                                <input type="text" name="lesson_id" value="{{ $lesson->id }}" hidden>
+                                                <fieldset class="rating mt-2">
+                                                    <input type="radio" id="starFive" name="rating" value="5" required/><label for="starFive" title="Rocks!">5 stars</label>
+                                                    <input type="radio" id="starFor" name="rating" value="4" /><label for="starFor" title="Pretty good">4 stars</label>
+                                                    <input type="radio" id="starThree" name="rating" value="3" /><label for="starThree" title="Meh">3 stars</label>
+                                                    <input type="radio" id="starTwo" name="rating" value="2" /><label for="starTwo" title="Kinda bad">2 stars</label>
+                                                    <input type="radio" id="starOne" name="rating" value="1" /><label for="starOne" title="Sucks big time">1 star</label>
+                                                </fieldset>
+                                            </div>
+                                            <button type="submit" class="btn btn-learn px-3 ml-3"> Send </button>
+                                        </div>
+                                    </form>
+                                    @if (count($errors)>0)
+                                        <div class="alert alert-danger alert-dismissible fade show">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <ul>
+                                                @foreach ($errors ->all() as $err)
+                                                    <li>{{ $err }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -200,9 +237,6 @@
                     </div>
                     <div class="course-info-text">
                         <i class="fas fa-hashtag"></i> Tags: {{ $lesson->course->course_tag }}
-                    </div>
-                    <div class="course-info-text">
-                        <i class="far fa-money-bill-alt"></i> Price: 11
                     </div>
                 </div>
                 <div class="mt-3">
