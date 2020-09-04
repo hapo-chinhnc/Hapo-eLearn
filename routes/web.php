@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/courses', 'CoursesController@index')->name('courses.index');
 Route::get('/course/{id}', 'CoursesController@show')->name('courses.show');
-Route::get('/user-course', 'User\UserCourseController@store')->name('userCourse.store');
-Route::get('/user-course/{id}', 'User\UserCourseController@destroy')->name('userCourse.destroy');
+Route::get('/user-course', 'User\UserCourseController@store')->name('users_course.store');
+Route::get('/user-course/{id}', 'User\UserCourseController@destroy')->name('users_course.destroy');
 Auth::routes();
 Route::get('/lesson-detail/{id}', 'LessonsController@show')->name('lesson.detail')->middleware('auth');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');
     Route::resource('/user-management', 'Admin\UserManagementController');
 });
+Route::get('/lesson-user', 'User\LessonUserController@store')->name('lesson_users.store');
