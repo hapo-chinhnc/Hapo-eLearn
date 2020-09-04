@@ -7,7 +7,7 @@
         <meta name="Hapo Learn" content="Hapo Learn"/>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="shortcut icon" type="img/png" href="{{ asset('storage/images/favicon.png') }}">
-        <title>Hapo Learn</title>
+        <title>@yield('title')</title>
     </head>
     <body>
         <header class="container-fluid no-gutters-custom">

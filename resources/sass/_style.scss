@@ -664,7 +664,7 @@ header {
 
 .course-info {
   margin-top: 30px;
-  color: #bdb9b9;
+  color: $lesson-tittle-color;
   @include fontUtm(normal, 25px, 31px);
 
   .course-info-text {
@@ -832,7 +832,7 @@ header {
       height: 40px;
     }
 
-    i {
+    .icon {
       font-size: 14px;
       color: #ffd567;
     }
@@ -840,6 +840,13 @@ header {
     .review-time {
       color: #bdb9b9;
       @include fontUtm(normal, 14px, 17px);
+    }
+
+    .trash {
+      color: red;
+      &:hover {
+        color: #ff9494;
+      }
     }
   }
 
@@ -868,4 +875,93 @@ header {
   border-radius: 50%;
   height: 90px;
   width: 90px;
+}
+
+.rating {
+  float: left;
+  border: 0;
+}
+
+.rating:not(:checked) > input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 200%;
+  line-height: 1.2;
+  color: #ddd;
+}
+
+.rating:not(:checked) > label:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 30px;
+  content: "\f005";
+}
+
+.rating > input:checked ~ label {
+  color: #f70;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ea0;
+}
+
+.rating > label:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+.take-leave {
+  color: white;
+  padding: 10px 30px;
+  background-color: $color-green;
+  box-shadow: inset 0 1.5px 2px #6f8710;
+  border-radius: 22px;
+  @include fontUtm(bold, 15px, 18px);
+  &:hover {
+    box-shadow: none;
+    color: white;
+  }
+}
+
+.find-btn {
+  color: white;
+  padding: 10px 15px;
+  background: $color-green;
+  border: 1px solid $color-green;
+  border-radius: 5px;
+  @include font-Ops(bold, 15px, 20px);
+  &:hover {
+    color: white;
+    border-radius: 10px;
+  }
+}
+
+.nav-tabs {
+  .nav-link {
+    color: #505353;
+    background-color: transparent;
+  }
+
+  .nav-link.active {
+    color: white;
+    background-color: $color-green
+  }
 }

@@ -8,3 +8,6 @@
 </section>
 </header>
 <div class="w-100 d-md-block d-none hapolearn-blankspace"></div>
+@section('title')
+    Hapo Learn
+@endsection
