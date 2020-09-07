@@ -49,7 +49,7 @@ class ProfileController extends Controller
             Storage::delete('public/images/' . $image);
             $fileExtension = $request->file('avatar')->getClientOriginalExtension();
             $avatarName = $id . '_avatar_' . time() . '.' . $fileExtension;
-            $path = $request->file('avatar')->storeAs('public/images', $avatarName);
+            $request->file('avatar')->storeAs('public/images', $avatarName);
         }
         $user->avatar = $avatarName;
         $user->save();
