@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $courses = $user->courseOfUser;
+        $courses = $user->coursesOfUser;
         $courseList = [];
         foreach ($courses as $course) {
             $courseImage = Course::findOrFail($course->course_id);
@@ -40,10 +40,10 @@ class ProfileController extends Controller
         $user = User::find($id);
         $image = $user->avatar;
         if ($request->hasFile('avatar')) {
-            Storage::delete('public/images/' . $image);
+            Storage::delete(config('variable.storage') . $image);
             $fileExtension = $request->file('avatar')->getClientOriginalExtension();
             $avatarName = $id . '.' . $fileExtension;
-            $request->file('avatar')->storeAs('public/images', $avatarName);
+            $request->file('avatar')->storeAs(config('variable.storage'), $avatarName);
         }
         $user->avatar = $avatarName;
         $user->save();
