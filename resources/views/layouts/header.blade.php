@@ -27,7 +27,7 @@
                             </li>
                             @if (Auth::check())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">PROFILE</a>
+                                    <a class="nav-link" href="{{ route('profile.show', Auth::id()) }}">PROFILE</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">LIST LESSON</a>
