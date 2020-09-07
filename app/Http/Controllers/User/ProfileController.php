@@ -30,14 +30,8 @@ class ProfileController extends Controller
     public function update(UpdateProfileResquest $request, $id)
     {
         $user = User::find($id);
-        $user->update([
-            'name' => $request->get('name'),
-            'email' => $request->get('email_update'),
-            'birth_day' => $request->get('birth_day'),
-            'phone' => $request->get('phone'),
-            'address' => $request->get('address'),
-            'about' => $request->get('about')
-        ]);
+        $data = $request->all();
+        $user->update($data);
         return redirect()->back()->with('succses', trans('messages.update'));
     }
 
@@ -48,7 +42,7 @@ class ProfileController extends Controller
         if ($request->hasFile('avatar')) {
             Storage::delete('public/images/' . $image);
             $fileExtension = $request->file('avatar')->getClientOriginalExtension();
-            $avatarName = $id . '_avatar_' . time() . '.' . $fileExtension;
+            $avatarName = $id . '.' . $fileExtension;
             $request->file('avatar')->storeAs('public/images', $avatarName);
         }
         $user->avatar = $avatarName;
