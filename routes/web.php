@@ -29,3 +29,6 @@ Route::get('/lesson-user', 'User\LessonUserController@store')->name('lesson_user
 Route::post('/review', 'User\ReviewController@store')->name('review.store');
 Route::get('/review/{id}', 'User\ReviewController@destroy')->name('review.destroy');
 Route::post('/lesson-review', 'User\LessonReviewController@store')->name('lesson_review.store');
+Route::get('/profile/{id}', 'User\ProfileController@show')->name('profile.show');
+Route::post('/update-profile/{id}', 'User\ProfileController@update')->name('profile.update');
+Route::post('/update-avatar/{id}', 'User\ProfileController@uploadAvatar')->name('profile.avatar');

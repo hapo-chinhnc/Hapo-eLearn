@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\UserCourse;
 
 class User extends Authenticatable
 {
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'phone', 'role'
+        'name', 'email', 'password', 'avatar', 'phone', 'role', 'birth_day', 'address', 'about'
     ];
 
     /**
@@ -62,5 +63,10 @@ class User extends Authenticatable
     public function lessonLearned()
     {
         return $this->belongsToMany(Lesson::class, 'user_lesson')->withPivot('id');
+    }
+
+    public function courseOfUser()
+    {
+        return $this->hasMany(UserCourse::class);
     }
 }

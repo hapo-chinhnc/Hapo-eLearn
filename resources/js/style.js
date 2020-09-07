@@ -82,4 +82,21 @@ $(document).ready(function() {
 
       var role = $('#roleVal').val();
       $('option[value=' + role + ']').attr('selected', true);
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#avatarUpload').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    $("#avatar").change(function() {
+        readURL(this);
+        $('#avatarUpload').removeClass('d-none').addClass('d-block');
+    });
 });
