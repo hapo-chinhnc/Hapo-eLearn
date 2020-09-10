@@ -164,13 +164,11 @@ class Course extends Model
     public function scopeOrderByLessosn($query, $request)
     {
         if ($request->lessons == 'most-lessons') {
-            $query->withCount('lessons')->orderBy('lessons_count', 'desc')
-                ->paginate(config('variable.paginate'));
+            $query->withCount('lessons')->orderBy('lessons_count', 'desc');
         }
 
         if ($request->lessons == 'least-lessons') {
-            $query->withCount('lessons')->orderBy('lessons_count')
-                ->paginate(config('variable.paginate'));
+            $query->withCount('lessons')->orderBy('lessons_count');
         }
     }
 
