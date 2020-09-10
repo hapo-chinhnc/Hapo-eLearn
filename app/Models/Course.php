@@ -7,6 +7,7 @@ use App\Models\UserCourse;
 use App\Models\CourseTag;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Course extends Model
 {
@@ -36,7 +37,19 @@ class Course extends Model
 
     public function getCourseTimeAttribute()
     {
-        return $this->lessons()->sum('time');
+        $allTime = $this->lessons()->sum('time');
+        $timeFormatHours = floor($allTime / 60);
+        $timeFormatMinutes = ceil($allTime - floor($allTime / 60) * 60);
+        $timeFormat = [
+            'hours' => $timeFormatHours,
+            'minutes' => $timeFormatMinutes
+        ];
+        if ($timeFormat['hours'] == 0) {
+            $time = "0 (h))";
+        } else {
+            $time = $timeFormat['hours'] . " (h)";
+        }
+        return $time;
     }
 
     public function tags()
@@ -50,7 +63,7 @@ class Course extends Model
         if (count($tags) == 0) {
             $tag = 'No tag available';
         } else {
-            $tag = $tags->first()->title;
+            $tag = $tags->first()->tag_title;
             for ($i = 1; $i < count($tags); $i++) {
                 $tag .= ', ' . $tags[$i]->title;
             }
@@ -95,6 +108,80 @@ class Course extends Model
 
     public function learner()
     {
-        return $this->belongsToMany(User::class, 'user_course')->withPivot('id');
+        return $this->belongsToMany(User::class, 'user_course');
+    }
+
+    public function getCourseLearnedAttribute()
+    {
+        return $this->learner()->wherePivot('user_id', Auth::id())->exists();
+    }
+
+    public function scopeNameCourse($query, $request)
+    {
+        if ($request->has('name_course')) {
+            $query->where('title', 'like', '%' . $request->name_course . '%');
+        }
+        return $query;
+    }
+
+    public function scopeOrderCourse($query, $request)
+    {
+        if ($request->order_by_time == 0) {
+            $query->orderBy('id', 'desc');
+        }
+    }
+
+    public function scopeTeacherFind($query, $request)
+    {
+        if ($request->teacher) {
+            $query->where('teacher_id', $request->teacher);
+        }
+        return $query;
+    }
+
+    public function scopeFindByTag($query, $request)
+    {
+        $query->join('course_tag', 'courses.id', '=', 'course_id')
+            ->join('tags', 'tags.id', '=', 'course_tag.tag_id')
+            ->where('tags.id', $request->tags)
+            ->get(['courses.*']);
+        return $query;
+    }
+
+    public function scopeOrderByStudents($query, $request)
+    {
+        if ($request->students == 'most') {
+            $query->withCount('userCourse')
+                ->orderBy('user_course_count', 'desc');
+        }
+
+        if ($request->students == 'least') {
+            $query->withCount('userCourse')
+                ->orderBy('user_course_count');
+        }
+    }
+
+    public function scopeOrderByLessosn($query, $request)
+    {
+        if ($request->lessons == 'most-lessons') {
+            $query->withCount('lessons')->orderBy('lessons_count', 'desc')
+                ->paginate(config('variable.paginate'));
+        }
+
+        if ($request->lessons == 'least-lessons') {
+            $query->withCount('lessons')->orderBy('lessons_count')
+                ->paginate(config('variable.paginate'));
+        }
+    }
+
+    public function scopeOrderByReviews($query, $request)
+    {
+        if ($request->reviews == 'most-reviews') {
+            $query->withCount('reviews')->orderBy('reviews_count', 'desc');
+        }
+
+        if ($request->reviews == 'least-reviews') {
+            $query->withCount('reviews')->orderBy('reviews_count');
+        }
     }
 }
