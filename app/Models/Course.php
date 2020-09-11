@@ -129,6 +129,7 @@ class Course extends Model
         if ($request->order_by_time == 0) {
             $query->orderBy('id', 'desc');
         }
+        return $query;
     }
 
     public function scopeTeacherFind($query, $request)
@@ -141,10 +142,12 @@ class Course extends Model
 
     public function scopeFindByTag($query, $request)
     {
-        $query->join('course_tag', 'courses.id', '=', 'course_id')
+        if ($request->tags) {
+            $query->join('course_tag', 'courses.id', '=', 'course_id')
             ->join('tags', 'tags.id', '=', 'course_tag.tag_id')
             ->where('tags.id', $request->tags)
             ->get(['courses.*']);
+        }
         return $query;
     }
 
@@ -159,6 +162,7 @@ class Course extends Model
             $query->withCount('userCourse')
                 ->orderBy('user_course_count');
         }
+        return $query;
     }
 
     public function scopeOrderByLessosn($query, $request)
@@ -170,6 +174,7 @@ class Course extends Model
         if ($request->lessons == 'least-lessons') {
             $query->withCount('lessons')->orderBy('lessons_count');
         }
+        return $query;
     }
 
     public function scopeOrderByReviews($query, $request)
@@ -181,5 +186,6 @@ class Course extends Model
         if ($request->reviews == 'least-reviews') {
             $query->withCount('reviews')->orderBy('reviews_count');
         }
+        return $query;
     }
 }

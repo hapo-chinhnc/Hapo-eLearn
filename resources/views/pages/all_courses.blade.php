@@ -7,7 +7,7 @@
         <div class="filter-find row">
             <div class="d-flex align-items-center">
                 <button class="btn filter-btn mr-2 py-2" id="filterBtn"><i class="fas fa-sliders-h mr-1"></i>Filter</button>
-    <form action="{{ route('course.search') }}" method="GET">
+                <form action="{{ route('course.search') }}" method="GET">
                 <input type="text" placeholder="Search..." class="find-input p-2" name="name_course" value="{{ request('name_course') }}">
                 <i class="fas fa-search search-icon"></i>
                 <input type="submit" class="find-btn" value="Search">
@@ -36,6 +36,14 @@
                         <input type="text" id="teacherId" value="{{ request('teacher') }}" hidden>
                     </div>
                     <div class="filter-select">
+                        <select name="tags" class="custom-select">
+                            <option value="0">Tag</option>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->tag_title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="filter-select">
                         <select name="students" class="custom-select">
                             <option value="0">Number Students</option>
                             <option value="most">Most Students</option>
@@ -54,21 +62,6 @@
                             <option value="0">Reviews</option>
                             <option value="most-reviews">Most Reviews</option>
                             <option value="least-reviews">Least Reviews</option>
-                        </select>
-                    </div>
-                    <div class="filter-select">
-                        <select name="tags" class="custom-select">
-                            <option value="0">Tag</option>
-                            @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->tag_title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="filter-select">
-                        <select name="times" class="custom-select">
-                            <option selected value="0">Times</option>
-                            <option value="longest">Longest Times</option>
-                            <option value="shortest">Shortest Times</option>
                         </select>
                     </div>
                 </div>

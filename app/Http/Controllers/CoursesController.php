@@ -44,38 +44,14 @@ class CoursesController extends Controller
         $teachers = User::where('role', '2')->get();
         $tags = Tag::all();
         $courses = Course::query()
-            ->TeacherFind($request)
             ->OrderCourse($request)
             ->NameCourse($request)
+            ->TeacherFind($request)
+            ->FindByTag($request)
+            ->OrderByStudents($request)
+            ->OrderByLessosn($request)
+            ->OrderByReviews($request)
             ->paginate(config('variable.paginate'));
-
-        //Students order
-        if ($request->students) {
-            $courses = Course::query()
-                ->OrderByStudents($request)
-                ->paginate(config('variable.paginate'));
-        }
-
-        //Lessons order
-        if ($request->lessons) {
-            $courses = Course::query()
-                ->OrderByLessosn($request)
-                ->paginate(config('variable.paginate'));
-        }
-
-        //Reviews order
-        if ($request->reviews) {
-            $courses = Course::query()
-                ->OrderByReviews($request)
-                ->paginate(config('variable.paginate'));
-        }
-
-        //Tag finder
-        if ($request->tags) {
-            $courses = Course::query()
-                ->FindByTag($request)
-                ->paginate(config('variable.paginate'));
-        }
         return view('pages.all_courses', compact('courses', 'teachers', 'tags'));
     }
 }
