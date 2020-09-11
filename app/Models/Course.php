@@ -15,6 +15,11 @@ class Course extends Model
         'title', 'description', 'requirement', 'price', 'teacher_id'
     ];
 
+    const ORDER = [
+        'most' => 'most',
+        'least' => 'least'
+    ];
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
@@ -118,7 +123,7 @@ class Course extends Model
 
     public function scopeNameCourse($query, $name)
     {
-        if ($name != '') {
+        if ($name) {
             $query->where('title', 'like', '%' . $name . '%');
         }
         return $query;
@@ -153,12 +158,12 @@ class Course extends Model
 
     public function scopeOrderByStudents($query, $students)
     {
-        if ($students == 'most') {
+        if ($students == Course::ORDER['most']) {
             $query->withCount('learner')
                 ->orderBy('learner_count', 'desc');
         }
 
-        if ($students == 'least') {
+        if ($students == Course::ORDER['least']) {
             $query->withCount('learner')
                 ->orderBy('learner_count');
         }
@@ -167,11 +172,11 @@ class Course extends Model
 
     public function scopeOrderByLessosn($query, $lesson)
     {
-        if ($lesson == 'most-lessons') {
+        if ($lesson == Course::ORDER['most']) {
             $query->withCount('lessons')->orderBy('lessons_count', 'desc');
         }
 
-        if ($lesson == 'least-lessons') {
+        if ($lesson == Course::ORDER['least']) {
             $query->withCount('lessons')->orderBy('lessons_count');
         }
         return $query;
@@ -179,11 +184,11 @@ class Course extends Model
 
     public function scopeOrderByReviews($query, $reviews)
     {
-        if ($reviews == 'most-reviews') {
+        if ($reviews == Course::ORDER['most']) {
             $query->withCount('reviews')->orderBy('reviews_count', 'desc');
         }
 
-        if ($reviews == 'least-reviews') {
+        if ($reviews == Course::ORDER['least']) {
             $query->withCount('reviews')->orderBy('reviews_count');
         }
         return $query;

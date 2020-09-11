@@ -53,15 +53,15 @@
                     <div class="filter-select">
                         <select name="lessons" class="custom-select">
                             <option value="0">Number Lessons</option>
-                            <option value="most-lessons">Most Lessons</option>
-                            <option value="least-lessons">Least Lessons</option>
+                            <option value="most">Most Lessons</option>
+                            <option value="least">Least Lessons</option>
                         </select>
                     </div>
                     <div class="filter-select">
                         <select name="reviews" class="custom-select">
                             <option value="0">Reviews</option>
-                            <option value="most-reviews">Most Reviews</option>
-                            <option value="least-reviews">Least Reviews</option>
+                            <option value="most">Most Reviews</option>
+                            <option value="least">Least Reviews</option>
                         </select>
                     </div>
                 </div>
