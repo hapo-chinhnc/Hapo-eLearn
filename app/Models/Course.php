@@ -116,74 +116,74 @@ class Course extends Model
         return $this->learner()->wherePivot('user_id', Auth::id())->exists();
     }
 
-    public function scopeNameCourse($query, $request)
+    public function scopeNameCourse($query, $name)
     {
-        if ($request->has('name_course')) {
-            $query->where('title', 'like', '%' . $request->name_course . '%');
+        if ($name != '') {
+            $query->where('title', 'like', '%' . $name . '%');
         }
         return $query;
     }
 
-    public function scopeOrderCourse($query, $request)
+    public function scopeOrderCourse($query, $order)
     {
-        if ($request->order_by_time == 0) {
+        if ($order == 0) {
             $query->orderBy('id', 'desc');
         }
         return $query;
     }
 
-    public function scopeTeacherFind($query, $request)
+    public function scopeTeacherFind($query, $teacherId)
     {
-        if ($request->teacher) {
-            $query->where('teacher_id', $request->teacher);
+        if ($teacherId) {
+            $query->where('teacher_id', $teacherId);
         }
         return $query;
     }
 
-    public function scopeFindByTag($query, $request)
+    public function scopeFindByTag($query, $tag)
     {
-        if ($request->tags) {
+        if ($tag) {
             $query->join('course_tag', 'courses.id', '=', 'course_id')
             ->join('tags', 'tags.id', '=', 'course_tag.tag_id')
-            ->where('tags.id', $request->tags)
+            ->where('tags.id', $tag)
             ->get(['courses.*']);
         }
         return $query;
     }
 
-    public function scopeOrderByStudents($query, $request)
+    public function scopeOrderByStudents($query, $students)
     {
-        if ($request->students == 'most') {
-            $query->withCount('userCourse')
-                ->orderBy('user_course_count', 'desc');
+        if ($students == 'most') {
+            $query->withCount('learner')
+                ->orderBy('learner_count', 'desc');
         }
 
-        if ($request->students == 'least') {
-            $query->withCount('userCourse')
-                ->orderBy('user_course_count');
+        if ($students == 'least') {
+            $query->withCount('learner')
+                ->orderBy('learner_count');
         }
         return $query;
     }
 
-    public function scopeOrderByLessosn($query, $request)
+    public function scopeOrderByLessosn($query, $lesson)
     {
-        if ($request->lessons == 'most-lessons') {
+        if ($lesson == 'most-lessons') {
             $query->withCount('lessons')->orderBy('lessons_count', 'desc');
         }
 
-        if ($request->lessons == 'least-lessons') {
+        if ($lesson == 'least-lessons') {
             $query->withCount('lessons')->orderBy('lessons_count');
         }
         return $query;
     }
 
-    public function scopeOrderByReviews($query, $request)
+    public function scopeOrderByReviews($query, $reviews)
     {
-        if ($request->reviews == 'most-reviews') {
+        if ($reviews == 'most-reviews') {
             $query->withCount('reviews')->orderBy('reviews_count', 'desc');
         }
 
-        if ($request->reviews == 'least-reviews') {
+        if ($reviews == 'least-reviews') {
             $query->withCount('reviews')->orderBy('reviews_count');
         }
         return $query;

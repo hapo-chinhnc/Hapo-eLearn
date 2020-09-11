@@ -112,7 +112,7 @@
         @endif
     </div>
     <div class="col-12 d-flex justify-content-end">
-        {{ $courses->links() }}
+        {{ $courses->appends($_GET)->links() }}
     </div>
 </div>
 @endsection
