@@ -11,4 +11,9 @@ class Tag extends Model
     ];
 
     protected $table = 'tags';
+
+    public function courseTag()
+    {
+        return $this->belongsToMany(Course::class, 'course_tag');
+    }
 }

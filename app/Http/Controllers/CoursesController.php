@@ -6,14 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use App\User;
+use App\Models\Lesson;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class CoursesController extends Controller
 {
     public function index()
     {
-        $courses = Course::paginate(config('variable.paginate'));
-        return view('pages.all_courses', compact(['courses']));
+        $teachers = User::where('role', '2')->get();
+        $tags = Tag::all();
+        $courses = Course::orderBy('id', 'desc')->paginate(config('variable.paginate'));
+        return view('pages.all_courses', compact(['courses', 'teachers', 'tags']));
     }
 
     public function show($id)
@@ -22,21 +28,6 @@ class CoursesController extends Controller
         $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
         $lessons = $course->lessons()->paginate(config('variable.paginate_lesson'));
         $reviews = $course->reviews;
-        $findPivote = $course->learner()->wherePivot('user_id', Auth::id())->first();
-        $pivotId = 0;
-        if ($findPivote == true) {
-            $pivotId = $findPivote->pivot->id;
-        }
-        $checkLearnLesson = [];
-        $pivotIdLesson = 0;
-        foreach ($lessons as $lesson) {
-            $findPivotLesson = $lesson->lessonLearner()->wherePivot('user_id', Auth::id())->first();
-            $pivotIdLesson = 0;
-            if ($findPivotLesson) {
-                $pivotIdLesson = $findPivotLesson->pivot->id;
-            }
-            $checkLearnLesson[] = $pivotIdLesson;
-        }
         $ratingStar = [
             'full_star' => config('variable.full_star'),
             'good_rating' => config('variable.good_rating'),
@@ -45,6 +36,22 @@ class CoursesController extends Controller
             'very_bad_rating' => config('variable.very_bad_rating')
         ];
         return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews',
-            'ratingStar', 'pivotId', 'checkLearnLesson']));
+            'ratingStar']));
+    }
+
+    public function search(Request $request)
+    {
+        $teachers = User::where('role', '2')->get();
+        $tags = Tag::all();
+        $courses = Course::query()
+            ->NameCourse($request->name_course)
+            ->OrderCourse($request->order_by_time)
+            ->TeacherFind($request->teacher)
+            ->FindByTag($request->tags)
+            ->OrderByStudents($request->students)
+            ->OrderByLessosn($request->lessons)
+            ->OrderByReviews($request->reviews)
+            ->paginate(config('variable.paginate'));
+        return view('pages.all_courses', compact('courses', 'teachers', 'tags'));
     }
 }

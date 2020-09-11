@@ -1035,7 +1035,7 @@ header {
 }
 
 .icon-upload {
-  color: #CCCCCC;
+  color: #cccccc;
   font-size: 3rem;
   pointer-events: none;
 }
@@ -1048,4 +1048,41 @@ header {
 .profile-avatar {
   height: 245px;
   width: 245px;
+}
+
+.course-filter {
+  display: none;
+  background-color: white;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+
+  .filter-title {
+    color: $lesson-tittle-color;
+    @include fontUtm(bold, 16px, 22px);
+  }
+
+  .order-by-time {
+    width: 101px;
+    height: 34px;
+  }
+}
+
+.course-filter input[type="radio"] + label {
+  background-color: #e5e6e7;
+  color: $lesson-tittle-color;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 2px;
+  @include fontUtm(bold, 14px, 19px);
+}
+
+.course-filter input[type="radio"]:checked + label,
+.Checked + label {
+  color: white;
+  background: $color-green;
+}
+
+.filter-select {
+  width: 140px;
+  margin: 10px;
 }

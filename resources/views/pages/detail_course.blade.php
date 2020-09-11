@@ -29,8 +29,8 @@
                                 </form>
                             </div>
                             <div>
-                                @if ($pivotId == 0)
-                                    <form action="{{ route('users_course.store') }}" method="GET" class="text-center">
+                                @if (empty($course->course_learned))
+                                    <form action="{{ route('users_course.store', $course->id) }}" method="POST" class="text-center">
                                         @csrf
                                         <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
                                         <input type="text" name="course_id" value="{{ $course->id }}" hidden>
@@ -46,11 +46,11 @@
                                         @foreach ($lessons as $key => $lesson)
                                             <div class="d-flex justify-content-between align-items-center p-3 border-top-bot">
                                                 <p class="my-auto">{{ $key+1 . ": " . $lesson->title }}</p>
-                                                @if ($pivotId != 0)
-                                                    @if ( $checkLearnLesson[$key] > 0)
+                                                @if($course->course_learned)
+                                                    @if ($lesson->lesson_learned)
                                                         <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learn">Continue</button></a>
                                                     @else
-                                                        <form action="{{ route('lesson_users.store') }}" method="GET" class="text-center">
+                                                        <form action="{{ route('lesson_users.store', $lesson->id) }}" method="POST" class="text-center">
                                                             @csrf
                                                             <input type="text" name="user_id" value="{{ Auth::id() }}" hidden>
                                                             <input type="text" hidden value="{{ $lesson->id }}" name="lesson_id">
@@ -242,10 +242,10 @@
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: {{ $course->price }}
                     </div>
-                    @if($pivotId)
+                    @if($course->course_learned)
                         <div class="course-info-text">
                             <div class="w-100 text-center">
-                                <form action="{{ route('users_course.destroy',  $pivotId) }}" method="GET" class="delete-form">
+                                <form action="{{ route('users_course.destroy',  Auth::id()) }}" method="GET" class="delete-form">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn take-leave" onclick="return confirm('Leave Course?');">Leave This Course</i></button>

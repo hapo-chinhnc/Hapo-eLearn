@@ -6,25 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCourseRequtest;
 use Illuminate\Http\Request;
 use App\Models\UserCourse;
+use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 
 class UserCourseController extends Controller
 {
-    public function store(UserCourseRequtest $request)
+    public function store($id)
     {
-        $userCourse = new UserCourse();
-        $courseId = $request->input('course_id');
-        $data = [
-            'user_id' => $request->input('user_id'),
-            'course_id' => $courseId
-        ];
-        $userCourse::create($data);
-        return redirect()->route('courses.show', $courseId);
+        $course = Course::findOrFail($id);
+        $course->learner()->attach(Auth::id());
+        return redirect()->route('courses.show', $id);
     }
 
     public function destroy($id)
     {
-        $pivot = UserCourse::findOrFail($id);
-        $pivot->delete();
+        $course = Course::find($id);
+        $course->learner()->detach(Auth::id());
         return redirect()->route('courses.index');
     }
 }

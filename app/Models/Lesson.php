@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\UserLesson;
 use App\Models\Review;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Lesson extends Model
 {
@@ -61,6 +62,12 @@ class Lesson extends Model
 
     public function lessonLearner()
     {
-        return $this->belongsToMany(User::class, 'user_lesson')->withPivot('id');
+        return $this->belongsToMany(User::class, 'user_lesson');
+    }
+
+    public function getLessonLearnedAttribute()
+    {
+        $check = $this->lessonLearner()->wherePivot('user_id', Auth::id())->exists();
+        return $check;
     }
 }
