@@ -4,6 +4,13 @@
 @endsection
 @section('content')
     <div class="container">
+        <div class="mt-2 d-flex align-items-center links-header">
+            <a href="{{ route('home') }}" class="mx-3">Home</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="{{ route('courses.index') }}" class="mx-3">All Courses</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="" class="mx-3">{{ $course->title }}</a>
+        </div>
         <div class="row">
             <div class="col-8">
                 <div class="course-detail-image d-flex justify-content-center">
@@ -246,10 +253,16 @@
                         <i class="far fa-list-alt"></i> Lessons: {{ $course->course_lesson }} lessons
                     </div>
                     <div class="course-info-text">
-                        <i class="far fa-clock"></i> Times: {{ $course->course_time }} minutes
+                        <i class="far fa-clock"></i> Times: {{ $course->course_time }}
                     </div>
-                    <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: <a href="">{{ $course->course_tag }}</a>
+                    <div class="course-info-text d-flex flex-wrap">
+                        <i class="fas fa-hashtag"></i> Tags:
+                        @foreach ($tags as $tag)
+                            <form action="{{ route('tag.search', $tag->id) }}" class="mx-1 mt-n1 mb-1">
+                                <label for="{{ $tag->id }}"><span class="badge badge-light badge-custom p-2 mt-2">{{ $tag->tag_title }}</span></label>
+                                <input type="submit" hidden id="{{ $tag->id }}">
+                            </form>
+                        @endforeach
                     </div>
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: {{ $course->price }}
@@ -270,8 +283,8 @@
                         <div class="other-list">
                             @foreach ($otherCourses as $key => $other)
                                 <div class="other-list-item py-3 row mx-0 ">
-                                    <div class="col-1 no-gutters-custom ml-3"><strong>{{ ++$key }}</strong></div>
-                                    <a href="{{ route('courses.show', $other->id) }}" class="col-10 no-gutters-custom">{{ $other->title }}</a>
+                                    <div class="col-1 no-gutters-custom ml-3 links-course">{{ ++$key }}</div>
+                                    <a href="{{ route('courses.show', $other->id) }}" class="col-10 no-gutters-custom links-course">{{ $other->title }}</a>
                                 </div>
                             @endforeach
                             <div class="text-center p-4">
