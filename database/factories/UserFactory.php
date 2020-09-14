@@ -22,10 +22,14 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => bcrypt('1234567'), // password
+        'password' => bcrypt('12345678'), // password
         'remember_token' => Str::random(10),
-        'avatar' => $faker->name,
+        'avatar' => $faker->randomElement($array = array(
+            'user-img.jpg', 'user-img1.jpg', 'user-img2.jpg', 'user-img3.jpg', 'user-img4.jpg')),
         'phone' => $faker->phoneNumber,
-        'role' => '1',
+        'role' => $faker->numberBetween($min = 1, $max = 2),
+        'birth_day' => now(),
+        'address' => $faker->streetAddress,
+        'about' => $faker->text(150)
     ];
 });

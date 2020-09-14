@@ -42,7 +42,7 @@ class UserManagementController extends Controller
         $data = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => bcrypt($request->input('password')),
             'avatar' => 'user-img.jpg',
             'phone' => $request->input('phone'),
         ];
@@ -62,7 +62,7 @@ class UserManagementController extends Controller
         $data = [
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
-            'password' => $request->input('password'),
+            'password' => bcrypt($request->input('password')),
             'role' => $request->input('role')
         ];
         $user->update($data);
