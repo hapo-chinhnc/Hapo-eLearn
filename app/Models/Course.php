@@ -153,7 +153,7 @@ class Course extends Model
     public function scopeFindByTag($query, $tag)
     {
         if ($tag) {
-            $query->with('courseTags')->whereHas('courseTags', function($q) use ($tag) {
+            $query->with('courseTags')->whereHas('courseTags', function ($q) use ($tag) {
                 $q->join('tags', 'tags.id', '=', 'course_tag.tag_id')
                 ->where('tags.id', $tag);
             })->get();
