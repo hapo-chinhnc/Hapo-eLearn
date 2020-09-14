@@ -12,6 +12,6 @@ class CourseTagsSeeder extends Seeder
      */
     public function run()
     {
-        factory(CourseTag::class, 30)->create();
+        factory(CourseTag::class, 200)->create();
     }
 }

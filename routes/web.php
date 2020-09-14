@@ -35,3 +35,4 @@ Route::post('/update-avatar/{id}', 'User\ProfileController@uploadAvatar')->name(
 Route::get('/course-search', 'CoursesController@search')->name('course.search');
 Route::get('/lesson-search/{id}', 'CoursesController@searchLessons')->name('lessons.search');
 Route::post('/update-review/{id}', 'User\ReviewController@update')->name('review.update');
+Route::get('/search-tag/{id}', 'CoursesController@searchByTag')->name('tag.search');

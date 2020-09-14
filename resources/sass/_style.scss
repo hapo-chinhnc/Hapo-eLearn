@@ -1131,3 +1131,28 @@ header {
 .form-edit-review {
   display: none;
 }
+
+.badge-custom {
+  color: #1976d2;
+  cursor: pointer;
+  &:hover {
+    background-color: #005db9;
+    color: white;
+  }
+}
+
+.links-course {
+  color: $lesson-tittle-color;
+  @include font-Ops(bold, 16px, 20px);
+  &:hover {
+    color: $color-green;
+    text-decoration: none;
+  }
+}
+
+.links-header {
+  a {
+    color: $lesson-tittle-color;
+    @include font-Ops(normal, 16px, 20px);
+  }
+}

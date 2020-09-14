@@ -8,7 +8,7 @@ use App\Models\CourseTag;
 
 $factory->define(CourseTag::class, function (Faker $faker) {
     return [
-        'tag_id' => $faker->numberBetween($min = 1, $max = 10),
-        'course_id' => $faker->numberBetween($min = 1, $max = 20)
+        'tag_id' => $faker->numberBetween($min = 1, $max = 25),
+        'course_id' => $faker->numberBetween($min = 1, $max = 50)
     ];
 });

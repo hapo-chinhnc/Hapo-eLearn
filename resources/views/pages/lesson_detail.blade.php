@@ -4,6 +4,15 @@
 @endsection
 @section('content')
     <div class="container">
+        <div class="mt-2 d-flex align-items-center links-header">
+            <a href="{{ route('home') }}" class="mx-3">Home</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="{{ route('courses.index') }}" class="mx-3">All Courses</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="{{ route('courses.show', $lesson->course->id) }}" class="mx-3">{{ $lesson->course->title }}</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="" class="mx-3">{{ $lesson->title }}</a>
+        </div>
         <div class="row">
             <div class="col-8">
                 <div class="course-detail-image d-flex justify-content-center">
@@ -32,8 +41,14 @@
                                     <div class="lesson-detail-text">
                                         {{ $lesson->requirement }}
                                     </div>
-                                    <div class="lesson-detail-text d-flex align-items-center">
-                                        <div class="lesson-detail-title pr-4">Tag:</div> {{ $lesson->course->course_tag }}
+                                    <div class="lesson-detail-text d-flex align-items-center flex-wrap">
+                                        <div class="lesson-detail-title pr-4">Tags:</div>
+                                        @foreach ($courseTags as $tag)
+                                            <form action="{{ route('tag.search', $tag->id) }}" class="mx-1 mt-2">
+                                                <label for="{{ $tag->id }}"><span class="badge badge-light badge-custom p-2 mt-2">{{ $tag->tag_title }}</span></label>
+                                                <input type="submit" hidden id="{{ $tag->id }}">
+                                            </form>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -249,17 +264,23 @@
                     <div class="course-info-text">
                         <i class="far fa-clock"></i> Times:  {{ $lesson->time }} minutes
                     </div>
-                    <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: {{ $lesson->course->course_tag }}
+                    <div class="course-info-text d-flex flex-wrap">
+                        <i class="fas fa-hashtag"></i> Tags:
+                        @foreach ($courseTags as $tag)
+                            <form action="{{ route('tag.search', $tag->id) }}" class="mx-1 mt-n1 mb-1">
+                                <label for="{{ $tag->id }}"><span class="badge badge-light badge-custom p-2 mt-2">{{ $tag->tag_title }}</span></label>
+                                <input type="submit" hidden id="{{ $tag->id }}">
+                            </form>
+                        @endforeach
                     </div>
                 </div>
                 <div class="mt-3">
                     <div class="course-info-tittle d-flex justify-content-center align-items-center">Other Courses</div>
                     <div class="other-list">
                         @foreach($otherCourses as $key => $otherCourse)
-                            <div class="other-list-item py-3 row mx-0 ">
-                                <div class="col-1 no-gutters-custom ml-3"><strong>{{ ++$key }}</strong></div>
-                                <a href="{{ route('courses.show', $otherCourse->id) }}" class="col-10 no-gutters-custom">{{ $otherCourse->title }}</a>
+                            <div class="other-list-item py-3 row mx-0">
+                                <div class="col-1 no-gutters-custom ml-3 links-course">{{ ++$key }}</div>
+                                <a href="{{ route('courses.show', $otherCourse->id) }}" class="col-10 no-gutters-custom links-course">{{ $otherCourse->title }}</a>
                             </div>
                         @endforeach
                         <div class="text-center p-4">
