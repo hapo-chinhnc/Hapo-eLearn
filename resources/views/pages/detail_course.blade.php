@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-8">
                 <div class="course-detail-image d-flex justify-content-center">
-                    <img src="{{ asset('storage/images/HTMLCSS.jpg') }}" class="img-fluid course-img">
+                    <img src="{{ asset('storage/images/' . $course->image) }}" class="img-fluid course-img">
                 </div>
                 <div class="course-detail w-100 d-flex flex-column justify-content-center">
                     <div class="course-detail-lesson w-100 p-3">
@@ -22,8 +22,8 @@
                         </div>
                         <div class="filter-find mb-3 d-flex justify-content-between">
                             <div class="d-flex align-items-center">
-                                <form action="">
-                                    <input type="text" placeholder="Search..." class="find-input p-2">
+                                <form action="{{ route('courses.show', $course->id) }}" method="GET">
+                                    <input type="text" placeholder="Search..." class="find-input p-2" name="lesson_name" value="{{ request('lesson_name') }}">
                                     <i class="fas fa-search search-icon"></i>
                                     <input type="submit" class="find-btn m-n3" value="Search">
                                 </form>
@@ -45,7 +45,7 @@
                                     @if (count($lessons) > 0)
                                         @foreach ($lessons as $key => $lesson)
                                             <div class="d-flex justify-content-between align-items-center p-3 border-top-bot">
-                                                <p class="my-auto">{{ $key+1 . ": " . $lesson->title }}</p>
+                                                <p class="my-auto">{{ $lessons->firstItem() + $key . ": " . $lesson->title }}</p>
                                                 @if($course->course_learned)
                                                     @if ($lesson->lesson_learned)
                                                         <a href="{{ route('lesson.detail', $lesson->id) }}"><button class="btn btn-learn">Continue</button></a>
@@ -60,10 +60,8 @@
                                                 @endif
                                             </div>
                                         @endforeach
-                                        <div class="mt-4 ">
-                                            <div class="pagination">
-                                                {{ $lessons->appends($_GET)->links('vendor.pagination.page_pagination') }}
-                                            </div>
+                                        <div class="mt-4 float-right">
+                                            {{ $lessons->appends(['lesson_name'=>request()->input('lesson_name')])->links('vendor.pagination.page_pagination') }}
                                         </div>
                                     @else
                                         <h1 class="text-center mt-3">No lesson available</h1>
@@ -86,11 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="teacher-text">
-                                        Vivamus volutpat eros pulvinar velit laoreet,
-                                        sit amet egestas erat dignissim. Sed quis rutrum tellus,
-                                        sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum.
-                                        Nam nulla ipsum, venenatis malesuada felis quis,
-                                        ultricies convallis neque. Pellentesque tristique
+                                        {{ $course->teacher->about }}
                                     </div>
                                 </div>
                             </div>
@@ -173,14 +167,32 @@
                                                     <div class="review-time ml-5">{{ $review->created_at }}</div>
                                                 </div>
                                                 @if (($review->user->id) == Auth::id())
-                                                    <form action="{{ route('review.destroy',  $review->id) }}" method="GET" class="delete-form">
-                                                        @method('DELETE')
-                                                        <button class="btn p-0" onclick="return confirm('Delete This ?')"><i class="fas fa-trash trash"></i></button>
-                                                    </form>
+                                                    <div class="d-flex align-items-center">
+                                                        <button type="button" class="btn p-0 mr-3 edit-btn" id="{{ $review->id }}"><i class="fas fa-pen-square edit-icon"></i></button>
+                                                        <form action="{{ route('review.destroy',  $review->id) }}" method="GET" class="delete-form">
+                                                            @method('DELETE')
+                                                            <button class="btn p-0" onclick="return confirm('Delete This ?')"><i class="fas fa-trash trash"></i></button>
+                                                        </form>
+                                                    </div>
                                                 @endif
                                             </div>
                                             <div class="user-review-text mx-3 mt-3 pb-3">
-                                               {{ $review->content }}
+                                                <div class="review" id="content{{ $review->id }}">{{ $review->content }}</div>
+                                                <form method="POST" action="{{ route('review.update', $review->id) }}" class="pb-5 form-edit-review" id="updateReview{{ $review->id }}">
+                                                    @csrf
+                                                    <textarea required name="update_review" rows="5" class="form-control w-100">{{ $review->content }}</textarea>
+                                                    <fieldset class="rating mt-2">
+                                                        <input type="radio" id="starFive" name="update_rating" value="5" required/><label for="starFive" title="Rocks!">5 stars</label>
+                                                        <input type="radio" id="starFor" name="update_rating" value="4" /><label for="starFor" title="Pretty good">4 stars</label>
+                                                        <input type="radio" id="starThree" name="update_rating" value="3" /><label for="starThree" title="Meh">3 stars</label>
+                                                        <input type="radio" id="starTwo" name="update_rating" value="2" /><label for="starTwo" title="Kinda bad">2 stars</label>
+                                                        <input type="radio" id="starOne" name="update_rating" value="1" /><label for="starOne" title="Sucks big time">1 star</label>
+                                                    </fieldset>
+                                                    <div class="float-right mt-2">
+                                                        <button type="button" class="btn btn-light cancel-btn"><b>Cancel</b></button>
+                                                        <input type="submit" class="btn btn-learn" value="Update">
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     @endforeach
@@ -237,7 +249,7 @@
                         <i class="far fa-clock"></i> Times: {{ $course->course_time }} minutes
                     </div>
                     <div class="course-info-text">
-                        <i class="fas fa-hashtag"></i> Tags: <div class="text-info">{{ $course->course_tag }}</div>
+                        <i class="fas fa-hashtag"></i> Tags: <a href="">{{ $course->course_tag }}</a>
                     </div>
                     <div class="course-info-text">
                         <i class="far fa-money-bill-alt"></i> Price: {{ $course->price }}

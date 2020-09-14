@@ -33,3 +33,5 @@ Route::get('/profile/{id}', 'User\ProfileController@show')->name('profile.show')
 Route::post('/update-profile/{id}', 'User\ProfileController@update')->name('profile.update');
 Route::post('/update-avatar/{id}', 'User\ProfileController@uploadAvatar')->name('profile.avatar');
 Route::get('/course-search', 'CoursesController@search')->name('course.search');
+Route::get('/lesson-search/{id}', 'CoursesController@searchLessons')->name('lessons.search');
+Route::post('/update-review/{id}', 'User\ReviewController@update')->name('review.update');
