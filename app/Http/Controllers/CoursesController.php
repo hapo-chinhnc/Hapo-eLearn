@@ -44,6 +44,7 @@ class CoursesController extends Controller
         $teachers = User::where('role', '2')->get();
         $tags = Tag::all();
         $courses = Course::query()
+            ->OrderByTimes($request->times)
             ->NameCourse($request->name_course)
             ->OrderCourse($request->order_by_time)
             ->TeacherFind($request->teacher)

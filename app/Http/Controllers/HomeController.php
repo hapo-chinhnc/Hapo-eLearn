@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\Review;
+use App\Models\UserCourse;
+use App\Models\UserLesson;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,6 +28,11 @@ class HomeController extends Controller
         $mainCourses = Course::inRandomOrder()->limit(config('variable.home_page_course'))->get();
         $reviews = Review::inRandomOrder()->limit(config('variable.reviews'))->get();
         $fullStar = config('variable.full_star');
-        return view('index', compact('mainCourses', 'reviews', 'fullStar'));
+        $statistic = [
+            'courses' => Course::count(),
+            'lessons' => Lesson::count(),
+            'learner' => User::where('role', User::ROLE['user'])->count()
+        ];
+        return view('index', compact('mainCourses', 'reviews', 'fullStar', 'statistic'));
     }
 }

@@ -64,6 +64,13 @@
                             <option value="least">Least Reviews</option>
                         </select>
                     </div>
+                    <div class="filter-select">
+                        <select name="times" class="custom-select">
+                            <option value="0">Times</option>
+                            <option value="most">Longest Time</option>
+                            <option value="least">Shortest Time</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,7 +119,7 @@
         @endif
     </div>
     <div class="col-12 d-flex justify-content-end">
-        {{ $courses->appends($_GET)->links() }}
+        {{ $courses->appends($_GET)->links('vendor.pagination.page_pagination') }}
     </div>
 </div>
 @endsection
