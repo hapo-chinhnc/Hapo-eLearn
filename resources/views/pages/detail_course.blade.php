@@ -62,7 +62,7 @@
                                         @endforeach
                                         <div class="mt-4 ">
                                             <div class="pagination">
-                                                {{ $lessons->links() }}
+                                                {{ $lessons->appends($_GET)->links('vendor.pagination.page_pagination') }}
                                             </div>
                                         </div>
                                     @else

@@ -8,6 +8,7 @@ use App\Models\CourseTag;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class Course extends Model
 {
@@ -50,7 +51,7 @@ class Course extends Model
             'minutes' => $timeFormatMinutes
         ];
         if ($timeFormat['hours'] == 0) {
-            $time = "0 (h))";
+            $time = "0 (h)";
         } else {
             $time = $timeFormat['hours'] . " (h)";
         }
@@ -148,10 +149,9 @@ class Course extends Model
     public function scopeFindByTag($query, $tag)
     {
         if ($tag) {
-            $query->join('course_tag', 'courses.id', '=', 'course_id')
-            ->join('tags', 'tags.id', '=', 'course_tag.tag_id')
-            ->where('tags.id', $tag)
-            ->get(['courses.*']);
+            $query->whereHas('tags', function (Builder $q) use ($tag) {
+                $q->where('tag_id', $tag);
+            })->get();
         }
         return $query;
     }
@@ -190,6 +190,23 @@ class Course extends Model
 
         if ($reviews == Course::ORDER['least']) {
             $query->withCount('reviews')->orderBy('reviews_count');
+        }
+        return $query;
+    }
+
+    public function scopeOrderByTimes($query, $time)
+    {
+        if ($time == Course::ORDER['most']) {
+            $query->addSelect(['time' => Lesson::selectRaw('sum(time) as total')
+                    ->whereColumn('course_id', 'courses.id')
+                    ->groupBy('course_id')
+                ])->orderByDesc('time');
+        }
+        if ($time == Course::ORDER['least']) {
+            $query->addSelect(['time' => Lesson::selectRaw('sum(time) as total')
+                    ->whereColumn('course_id', 'courses.id')
+                    ->groupBy('course_id')
+                ])->orderBy('time');
         }
         return $query;
     }

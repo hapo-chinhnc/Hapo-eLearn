@@ -12,7 +12,7 @@
     <body>
         <header class="container-fluid no-gutters-custom">
             <div class="row no-gutters-custom">
-                <nav class="navbar no-gutters navbar-light navbar-expand-sm d-flex justify-content-md-center flex-md-column flex-xl-row pl-xl-5 pr-xl-5 pt-xl-3 pb-xl-3">
+                <nav class="navbar no-gutters navbar-expand-sm d-flex justify-content-md-center flex-md-column flex-xl-row pl-xl-5 pr-xl-5 pt-xl-3 pb-xl-3">
                     <button class="navbar-toggler hapolearn-header-button col-1" id="icon-navbar" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="fa fa-bars" id="span-btn"></span>
                     </button>
@@ -20,20 +20,14 @@
                     <div class="collapse navbar-collapse col-md-12 col-xl-8 justify-content-xl-end no-gutters-custom justify-content-md-center" id="collapsibleNavbar">
                         <ul class="navbar-nav hapolearn-lists">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">Home</a>
+                                <a class="nav-link {{ Route::is('home') ? 'active' : ''}}" href="{{ route('home') }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('courses.index') }}">ALL COURSES</a>
+                                <a class="nav-link {{ Route::is('courses.index') ? 'active' : ''}}" href="{{ route('courses.index') }}">ALL COURSES</a>
                             </li>
                             @if (Auth::check())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('profile.show', Auth::id()) }}">PROFILE</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">LIST LESSON</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="#">LESSON DETAIL</a>
+                                    <a class="nav-link {{ Route::is('profile.show') ? 'active' : ''}}" href="{{ route('profile.show', Auth::id()) }}">PROFILE</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle"

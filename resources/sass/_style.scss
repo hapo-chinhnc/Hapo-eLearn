@@ -12,13 +12,25 @@ body {
   .hapolearn-lists {
     text-align: center;
 
-    a {
-      color: $lesson-tittle-color;
-      padding: 8px 10px;
-      text-transform: uppercase;
-      @include font-Ops(bolder, 1em, 1.25em);
+    li {
+      a {
+        color: $lesson-tittle-color;
+        padding: 8px 10px;
+        text-transform: uppercase;
+        @include font-Ops(bolder, 1em, 1.25em);
+      }
+
+      .active {
+        background: #b2d235;
+        border-radius: 17px;
+        color: white;
+      }
     }
   }
+}
+
+.card-img-top {
+  height: 220px;
 }
 
 .navbar-nav {
@@ -97,6 +109,7 @@ header {
 }
 
 .hapolearn-courses-items {
+  max-width: 350px;
   margin: 0 15px;
   border-radius: 15px;
   height: auto;
@@ -1085,4 +1098,20 @@ header {
 .filter-select {
   width: 140px;
   margin: 10px;
+}
+
+.page-link {
+  border-radius: 3px;
+  margin: 0 3px;
+  color: $color-green;
+  border: 1px solid #dee2e6;
+  padding: 5px 15px;
+  background-color: transparent;
+  @include font-Ops(bold, 18px, 25px);
+}
+
+.page-item.active .page-link{
+  color: white;
+  background-color: $color-green;
+  border: 0;
 }

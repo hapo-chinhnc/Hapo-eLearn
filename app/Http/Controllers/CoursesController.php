@@ -44,13 +44,14 @@ class CoursesController extends Controller
         $teachers = User::where('role', '2')->get();
         $tags = Tag::all();
         $courses = Course::query()
+            ->OrderByTimes($request->times)
             ->NameCourse($request->name_course)
-            ->OrderCourse($request->order_by_time)
-            ->TeacherFind($request->teacher)
-            ->FindByTag($request->tags)
             ->OrderByStudents($request->students)
             ->OrderByLessosn($request->lessons)
             ->OrderByReviews($request->reviews)
+            ->OrderCourse($request->order_by_time)
+            ->TeacherFind($request->teacher)
+            ->FindByTag($request->tags)
             ->paginate(config('variable.paginate'));
         return view('pages.all_courses', compact('courses', 'teachers', 'tags'));
     }
