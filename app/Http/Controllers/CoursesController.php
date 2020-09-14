@@ -58,9 +58,4 @@ class CoursesController extends Controller
             ->paginate(config('variable.paginate'));
         return view('pages.all_courses', compact('courses', 'teachers', 'tags'));
     }
-
-    public function searchLessons(Request $request, $courseId)
-    {
-
-    }
 }
