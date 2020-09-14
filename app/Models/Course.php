@@ -8,6 +8,7 @@ use App\Models\CourseTag;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class Course extends Model
 {
@@ -74,11 +75,6 @@ class Course extends Model
             }
         }
         return $tag;
-    }
-
-    public function courseTags()
-    {
-        return $this->hasMany(CourseTag::class);
     }
 
     public function reviews()
@@ -153,9 +149,8 @@ class Course extends Model
     public function scopeFindByTag($query, $tag)
     {
         if ($tag) {
-            $query->with('courseTags')->whereHas('courseTags', function ($q) use ($tag) {
-                $q->join('tags', 'tags.id', '=', 'course_tag.tag_id')
-                ->where('tags.id', $tag);
+            $query->whereHas('tags', function (Builder $q) use ($tag) {
+                $q->where('tag_id', $tag);
             })->get();
         }
         return $query;
