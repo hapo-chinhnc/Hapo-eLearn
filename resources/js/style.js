@@ -112,4 +112,16 @@ $(document).ready(function() {
     }
     var teacherId = $('#teacherId').val();
       $('#teacher option[value=' + teacherId + ']').attr('selected', true);
+
+    $('.edit-btn').click(function() {
+        var idRevew = this.id;
+        document.getElementById('content' + idRevew).style.display = 'none';
+        document.getElementById('updateReview' + idRevew).style.display = 'block';
+    });
+
+    $('.cancel-btn').click(function() {
+        var idCancel = $('.edit-btn').attr('id');
+        document.getElementById('content' + idCancel).style.display = 'block';
+        document.getElementById('updateReview' + idCancel).style.display = 'none';
+    });
 });

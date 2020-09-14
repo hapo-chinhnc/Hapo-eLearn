@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-8">
                 <div class="course-detail-image d-flex justify-content-center">
-                    <img src="{{ asset('storage/images/HTMLCSS.jpg') }}" class="img-fluid course-img">
+                    <img src="{{ asset('storage/images/'. $lesson->course->image) }}" class="img-fluid course-img">
                 </div>
                 <div class="course-detail">
                     <div class="course-detail-lesson p-3">
@@ -53,11 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="teacher-text">
-                                        Vivamus volutpat eros pulvinar velit laoreet,
-                                        sit amet egestas erat dignissim. Sed quis rutrum tellus,
-                                        sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum.
-                                        Nam nulla ipsum, venenatis malesuada felis quis,
-                                        ultricies convallis neque. Pellentesque tristique
+                                        {{ $lesson->course->teacher->about }}
                                     </div>
                                 </div>
                             </div>
@@ -175,14 +171,32 @@
                                                     <div class="review-time ml-5">{{ $lessonReview->created_at }}</div>
                                                 </div>
                                                 @if (($lessonReview->user->id) == Auth::id())
-                                                    <form action="{{ route('review.destroy',  $lessonReview->id) }}" method="GET" class="delete-form">
-                                                        @method('DELETE')
-                                                        <button class="btn p-0" onclick="return confirm('Delete This ?')"><i class="fas fa-trash trash"></i></button>
-                                                    </form>
+                                                    <div class="d-flex align-items-center">
+                                                        <button type="button" class="btn p-0 mr-3 edit-btn" id="{{ $lessonReview->id }}"><i class="fas fa-pen-square edit-icon"></i></button>
+                                                        <form action="{{ route('review.destroy',  $lessonReview->id) }}" method="GET" class="delete-form">
+                                                            @method('DELETE')
+                                                            <button class="btn p-0" onclick="return confirm('Delete This ?')"><i class="fas fa-trash trash"></i></button>
+                                                        </form>
+                                                    </div>
                                                 @endif
                                             </div>
                                             <div class="user-review-text mx-3 mt-3 pb-3">
-                                                {{ $lessonReview->content }}
+                                                <div class="review" id="content{{ $lessonReview->id }}">{{ $lessonReview->content }}</div>
+                                                <form method="POST" action="{{ route('review.update', $lessonReview->id) }}" class="pb-5 form-edit-review" id="updateReview{{ $lessonReview->id }}">
+                                                    @csrf
+                                                    <textarea required name="update_review" rows="5" class="form-control w-100">{{ $lessonReview->content }}</textarea>
+                                                    <fieldset class="rating mt-2">
+                                                        <input type="radio" id="starFive" name="update_rating" value="5" required/><label for="starFive" title="Rocks!">5 stars</label>
+                                                        <input type="radio" id="starFor" name="update_rating" value="4" /><label for="starFor" title="Pretty good">4 stars</label>
+                                                        <input type="radio" id="starThree" name="update_rating" value="3" /><label for="starThree" title="Meh">3 stars</label>
+                                                        <input type="radio" id="starTwo" name="update_rating" value="2" /><label for="starTwo" title="Kinda bad">2 stars</label>
+                                                        <input type="radio" id="starOne" name="update_rating" value="1" /><label for="starOne" title="Sucks big time">1 star</label>
+                                                    </fieldset>
+                                                    <div class="float-right mt-2">
+                                                        <button type="button" class="btn btn-light cancel-btn"><b>Cancel</b></button>
+                                                        <input type="submit" class="btn btn-learn" value="Update">
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     @endforeach

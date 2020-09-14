@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReviewRequest;
+use App\Http\Requests\UpdateReviewRequest;
 
 class ReviewController extends Controller
 {
@@ -27,6 +28,17 @@ class ReviewController extends Controller
     {
         $review = Review::findOrFail($id);
         $review->delete();
+        return redirect()->back();
+    }
+
+    public function update(UpdateReviewRequest $request, $reviewId)
+    {
+        $review = Review::find($reviewId);
+        $data = [
+            'content' => $request->update_review,
+            'rating' => $request->update_rating
+        ];
+        $review->update($data);
         return redirect()->back();
     }
 }

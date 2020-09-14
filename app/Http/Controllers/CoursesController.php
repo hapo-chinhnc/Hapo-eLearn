@@ -22,11 +22,13 @@ class CoursesController extends Controller
         return view('pages.all_courses', compact(['courses', 'teachers', 'tags']));
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $course = Course::findOrFail($id);
         $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course'))->get();
-        $lessons = $course->lessons()->paginate(config('variable.paginate_lesson'));
+        $lessons = $course->lessons()
+            ->where('title', 'LIKE', '%' . $request->lesson_name . '%')
+            ->paginate(config('variable.paginate_lesson'));
         $reviews = $course->reviews;
         $ratingStar = [
             'full_star' => config('variable.full_star'),
@@ -35,6 +37,7 @@ class CoursesController extends Controller
             'bad_rating' => config('variable.bad_rating'),
             'very_bad_rating' => config('variable.very_bad_rating')
         ];
+
         return view('pages.detail_course', compact(['course', 'otherCourses', 'lessons', 'reviews',
             'ratingStar']));
     }
@@ -54,5 +57,10 @@ class CoursesController extends Controller
             ->FindByTag($request->tags)
             ->paginate(config('variable.paginate'));
         return view('pages.all_courses', compact('courses', 'teachers', 'tags'));
+    }
+
+    public function searchLessons(Request $request, $courseId)
+    {
+
     }
 }
