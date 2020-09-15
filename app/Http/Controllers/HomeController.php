@@ -25,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mainCourses = Course::inRandomOrder()->limit(config('variable.home_page_course'))->get();
+        $mainCourses = Course::query()
+            ->OrderByStudents('most')
+            ->limit(config('variable.other_course'))
+            ->get();
         $reviews = Review::inRandomOrder()->limit(config('variable.reviews'))->get();
         $fullStar = config('variable.full_star');
         $statistic = [

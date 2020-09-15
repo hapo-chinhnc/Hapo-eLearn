@@ -27,7 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
         'avatar' => $faker->randomElement($array = array(
             'user-img.jpg', 'user-img1.jpg', 'user-img2.jpg', 'user-img3.jpg', 'user-img4.jpg')),
         'phone' => $faker->phoneNumber,
-        'role' => $faker->numberBetween($min = 1, $max = 2),
+        'role' => '1',
         'birth_day' => now(),
         'address' => $faker->streetAddress,
         'about' => $faker->text(150)
