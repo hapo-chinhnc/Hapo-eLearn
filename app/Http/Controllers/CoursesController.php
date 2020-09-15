@@ -32,7 +32,7 @@ class CoursesController extends Controller
         $lessons = $course->lessons()
             ->where('title', 'LIKE', '%' . $request->lesson_name . '%')
             ->paginate(config('variable.paginate_lesson'));
-        $reviews = $course->reviews;
+        $reviews = $course->reviews()->orderBy('id', 'desc')->get();
         $tags = $course->tags;
         $ratingStar = [
             'full_star' => config('variable.full_star'),

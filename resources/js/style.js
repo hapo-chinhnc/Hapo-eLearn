@@ -124,4 +124,14 @@ $(document).ready(function() {
         document.getElementById('content' + idCancel).style.display = 'block';
         document.getElementById('updateReview' + idCancel).style.display = 'none';
     });
+
+    $('#showAllReview').on('click', function() {
+        var reviewClass = document.getElementsByClassName("user-review-item");
+        $(reviewClass).removeClass('d-none');
+    })
+
+    $('#showAllReviewBottom').on('click', function() {
+        var reviewClass = document.getElementsByClassName("user-review-item");
+        $(reviewClass).removeClass('d-none');
+    })
 });

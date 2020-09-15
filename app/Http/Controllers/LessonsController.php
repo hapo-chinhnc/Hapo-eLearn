@@ -16,7 +16,7 @@ class LessonsController extends Controller
             ->OrderByStudents('most')
             ->limit(config('variable.other_course'))
             ->get();
-        $lessonReviews = $lesson->lessonReviews;
+        $lessonReviews = $lesson->lessonReviews()->orderBy('id', 'desc')->get();
         $courseTags = $lesson->course->tags;
         $ratingStar = [
             'full_star' => config('variable.full_star'),

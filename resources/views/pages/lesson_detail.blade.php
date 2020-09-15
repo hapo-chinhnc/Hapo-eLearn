@@ -167,12 +167,12 @@
                                     </div>
                                 </div>
                                 <div class="user-reviews">
-                                    <div class="user-reviews-title my-4"><strong> Show all reviews</strong></div>
-                                    @foreach ($lessonReviews as $lessonReview)
-                                        <div class="user-review-item">
+                                    <button class="user-reviews-title my-4 btn" id="showAllReview"><strong>Show all reviews</strong></button>
+                                    @foreach ($lessonReviews as $keyReview => $lessonReview)
+                                        <div class="user-review-item {{ $keyReview > 4 ? 'd-none' : '' }}">
                                             <div class="user-review-item-info d-flex align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="{{ asset('storage/images/user-img.jpg') }}" class="rounded-circle mx-3">
+                                                    <img src="{{ asset('storage/images/' . $lessonReview->user->avatar) }}" class="rounded-circle mx-3">
                                                     <div class="user-reviews-title mr-2">{{ $lessonReview->user->name }}</div>
                                                     <div class="mr-2">
                                                         @for ($i = 0; $i < $ratingStar['full_star']; $i++)
@@ -201,8 +201,8 @@
                                                     @csrf
                                                     <textarea required name="update_review" rows="5" class="form-control w-100">{{ $lessonReview->content }}</textarea>
                                                     <fieldset class="rating mt-2">
-                                                        <input type="radio" id="starFive" name="update_rating" value="5" required/><label for="starFive" title="Rocks!">5 stars</label>
-                                                        <input type="radio" id="starFor" name="update_rating" value="4" /><label for="starFor" title="Pretty good">4 stars</label>
+                                                        <input type="radio" id="starFiveUpdate" name="update_rating" value="5" required/><label for="starFive" title="Rocks!">5 stars</label>
+                                                        <input type="radio" id="starForUpdate" name="update_rating" value="4" /><label for="starFor" title="Pretty good">4 stars</label>
                                                         <input type="radio" id="starThree" name="update_rating" value="3" /><label for="starThree" title="Meh">3 stars</label>
                                                         <input type="radio" id="starTwo" name="update_rating" value="2" /><label for="starTwo" title="Kinda bad">2 stars</label>
                                                         <input type="radio" id="starOne" name="update_rating" value="1" /><label for="starOne" title="Sucks big time">1 star</label>
@@ -215,6 +215,7 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                    <button class="user-reviews-title btn" id="showAllReviewBottom"><strong>All Reviews</strong></button>
                                 </div>
                                 <div>
                                     <div class="lesson-detail-title">Leave a Comment</div>
