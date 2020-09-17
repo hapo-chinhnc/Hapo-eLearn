@@ -11,7 +11,7 @@
                 </div>
                 <div class="hapolearn-feedback-items-user mt-4 row ml-1">
                     <div class="hapolearn-feedback-items-user-picture">
-                        <img src="{{ asset('storage/images/user-img.jpg') }}" class="user-avatar">
+                        <img src="{{ asset('storage/images/' . $review->user->avatar) }}" class="user-avatar">
                     </div>
                     <div class="hapolearn-feedback-items-user-infor ml-3">
                         <p class="hapolearn-feedback-items-user-infor-text">{{ $review->user->name }}</p>

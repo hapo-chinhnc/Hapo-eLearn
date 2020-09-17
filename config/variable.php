@@ -10,5 +10,7 @@
         'normal_rating' => '3',
         'bad_rating' => '2',
         'very_bad_rating' => '1',
+        'main_course' => '3',
+        'other_course_home' => '3',
         'storage' => 'public/images/'
     ];

@@ -1,12 +1,12 @@
 <div class="hapolearn-title text-center w-100"><span class="hapolearn-title-borderbottom">Other Courses</span></div>
     <section class="hapolearn-othercourses mt-3 mt-md-5 d-md-flex flex-column flex-md-row justify-content-center">
-        @foreach ($mainCourses->slice(3) as $course)
+        @foreach ($otherCourses as $otherCourse)
             <div class="card hapolearn-courses-items col-md-4 no-gutters-custom col-12">
-                <img class="card-img-top img-fluid home-course-img" src="{{ asset('storage/images/' . $course->image) }}">
+                <img class="card-img-top img-fluid home-course-img" src="{{ asset('storage/images/' . $otherCourse->image) }}">
                 <div class="card-body no-gutters-custom hapolearn-card-body p-2">
-                    <div class="card-title hapolearn-card-title pt-xl-2">{{ $course->title }}</div>
-                    <div class="card-text hapolearn-card-text m-auto px-xl-4">{{ $course->description }}</div>
-                    <a href="{{ route('courses.show', $course->id) }}" class="d-flex justify-content-center text-decoration-none mb-2"><button class="btn hapolearn-courses-btn mb-3 px-md-4 mt-xl-3 mb-xl-1">Take This Course</button></a>
+                    <div class="card-title hapolearn-card-title pt-xl-2">{{ $otherCourse->title }}</div>
+                    <div class="card-text hapolearn-card-text m-auto px-xl-4">{{ $otherCourse->description }}</div>
+                    <a href="{{ route('courses.show', $otherCourse->id) }}" class="d-flex justify-content-center text-decoration-none mb-2"><button class="btn hapolearn-courses-btn mb-3 px-md-4 mt-xl-3 mb-xl-1">Take This Course</button></a>
                 </div>
             </div>
         @endforeach
