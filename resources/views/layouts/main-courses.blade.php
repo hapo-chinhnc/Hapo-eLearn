@@ -1,6 +1,6 @@
 <main class="container no-gutters-custom m-auto px-3 px-md-0">
     <section class="hapolearn-courses d-md-flex flex-column flex-md-row justify-content-center">
-        @foreach ($mainCourses->slice(0, 3) as $course)
+        @foreach ($mainCourses as $course)
             <div class="card hapolearn-courses-items col-md-4 no-gutters-custom col-12">
                 <img class="card-img-top img-fluid home-course-img" src="{{ asset('storage/images/' . $course->image) }}">
                 <div class="card-body no-gutters-custom hapolearn-card-body p-2">

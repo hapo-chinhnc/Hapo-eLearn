@@ -27,8 +27,10 @@ class HomeController extends Controller
     {
         $mainCourses = Course::query()
             ->OrderByStudents('most')
-            ->limit(config('variable.other_course'))
+            ->limit(config('variable.main_course'))
             ->get();
+
+        $otherCourses = Course::inRandomOrder()->limit(config('variable.other_course_home'))->get();
         $reviews = Review::inRandomOrder()->limit(config('variable.reviews'))->get();
         $fullStar = config('variable.full_star');
         $statistic = [
@@ -36,6 +38,6 @@ class HomeController extends Controller
             'lessons' => Lesson::count(),
             'learner' => User::where('role', User::ROLE['user'])->count()
         ];
-        return view('index', compact('mainCourses', 'reviews', 'fullStar', 'statistic'));
+        return view('index', compact('mainCourses', 'reviews', 'fullStar', 'statistic', 'otherCourses'));
     }
 }

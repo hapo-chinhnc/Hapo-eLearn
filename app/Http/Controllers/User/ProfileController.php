@@ -40,13 +40,15 @@ class ProfileController extends Controller
         $user = User::find($id);
         $image = $user->avatar;
         if ($request->hasFile('avatar')) {
-            Storage::delete(config('variable.storage') . $image);
+            if ($image != 'default-user-image.jpg') {
+                Storage::delete(config('variable.storage') . $image);
+            }
             $fileExtension = $request->file('avatar')->getClientOriginalExtension();
             $avatarName = $id . '.' . $fileExtension;
             $request->file('avatar')->storeAs(config('variable.storage'), $avatarName);
         }
         $user->avatar = $avatarName;
         $user->save();
-        return redirect()->back()->with('succses', trans('messages.update'));
+        return redirect()->route('profile.show', Auth::id())->with('succses', trans('messages.update'));
     }
 }

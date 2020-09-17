@@ -51,9 +51,9 @@ class Course extends Model
             'minutes' => $timeFormatMinutes
         ];
         if ($timeFormat['hours'] == 0) {
-            $time = "0 (h)";
+            $time = $timeFormat['minutes'] . " m";
         } else {
-            $time = $timeFormat['hours'] . " (h)";
+            $time = $timeFormat['hours'] . " h " . $timeFormat['minutes'] . " m";
         }
         return $time;
     }
@@ -71,7 +71,7 @@ class Course extends Model
         } else {
             $tag = $tags->first()->tag_title;
             for ($i = 1; $i < count($tags); $i++) {
-                $tag .= ', ' . $tags[$i]->title;
+                $tag .= ', ' . $tags[$i]->tag_title;
             }
         }
         return $tag;
@@ -151,7 +151,7 @@ class Course extends Model
         if ($tag) {
             $query->whereHas('tags', function (Builder $q) use ($tag) {
                 $q->where('tag_id', $tag);
-            })->get();
+            });
         }
         return $query;
     }

@@ -100,15 +100,15 @@
                     </div>
                     <div class="course-item-statistic col-12 d-flex justify-content-between">
                         <div>
-                            <div class="course-item-statistic-title">Learners</div>
+                            <div class="course-item-statistic-title text-center">Learners</div>
                             <div class="course-item-statistic-number">{{ $course->course_user }}</div>
                         </div>
                         <div>
-                            <div class="course-item-statistic-title">Lessons</div>
+                            <div class="course-item-statistic-title text-center">Lessons</div>
                             <div class="course-item-statistic-number">{{ $course->course_lesson }}</div>
                         </div>
                         <div>
-                            <div class="course-item-statistic-title">Times</div>
+                            <div class="course-item-statistic-title text-center">Times</div>
                             <div class="course-item-statistic-number">{{ $course->course_time }}</div>
                         </div>
                     </div>

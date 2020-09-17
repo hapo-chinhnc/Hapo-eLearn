@@ -127,6 +127,7 @@ header {
   color: $color-gray-darker;
   text-align: center;
   -webkit-text-stroke: 0.2px;
+  height: 100px;
   @include fontUtm(normal, 14px, 18px);
 }
 
@@ -274,6 +275,7 @@ header {
 .hapolearn-quote-borderleft {
   border-left: 5px solid #d9dadc;
   padding: 10px;
+  height: 100px;
   display: inline-block;
   margin-left: 10px;
 }
